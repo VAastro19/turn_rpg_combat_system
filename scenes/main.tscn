@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cagqldqy4wgfq"]
+
+[ext_resource type="PackedScene" uid="uid://doms5i30by1q3" path="res://scenes/ui.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://oqxtj4qrfcl6" path="res://scenes/character.tscn" id="2_0wfyh"]
+
+[node name="Main" type="Node2D" unique_id=807530277]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1005716207]
+position = Vector2(576, 324)
+
+[node name="UI" parent="." unique_id=1376955447 instance=ExtResource("1_o5qli")]
+
+[node name="Character" parent="." unique_id=483189046 instance=ExtResource("2_0wfyh")]
+position = Vector2(129, 129)
+
+[node name="Character2" parent="." unique_id=1502949294 instance=ExtResource("2_0wfyh")]
+position = Vector2(705, 129)
+facing_left = true

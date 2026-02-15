@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://oqxtj4qrfcl6"]
+
+[ext_resource type="Script" uid="uid://b7njgh3p7qkwg" path="res://scripts/character.gd" id="1_lrhn5"]
+[ext_resource type="PackedScene" uid="uid://3yv5vhbhvxqj" path="res://scenes/character_ui.tscn" id="1_rkhd4"]
+[ext_resource type="Texture2D" uid="uid://db516v8xw85ks" path="res://assets/sprites/NecropolisSprites.png" id="2_lrhn5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkhd4"]
+bg_color = Color(0.04873965, 0.04873965, 0.048739605, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrhn5"]
+bg_color = Color(0.6666667, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my7n2"]
+bg_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp8ca"]
+bg_color = Color(0, 0.6666667, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+
+[node name="Character" type="Node2D" unique_id=483189046]
+script = ExtResource("1_lrhn5")
+
+[node name="CharacterUI" parent="." unique_id=406308773 instance=ExtResource("1_rkhd4")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1895621292]
+position = Vector2(160, 160)
+scale = Vector2(6, 6)
+texture = ExtResource("2_lrhn5")
+region_enabled = true
+region_rect = Rect2(0, 144, 32, 32)
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=290310986]
+offset_top = 323.0
+offset_right = 320.0
+offset_bottom = 339.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rkhd4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lrhn5")
+value = 80.0
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="." unique_id=357003392]
+offset_left = -19.0
+offset_right = -3.0
+offset_bottom = 320.0
+theme_override_styles/background = SubResource("StyleBoxFlat_my7n2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dp8ca")
+value = 70.0
+fill_mode = 3
+show_percentage = false

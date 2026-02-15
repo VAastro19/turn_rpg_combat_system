@@ -1,0 +1,323 @@
+[gd_scene format=3 uid="uid://bvtn633a1fqra"]
+
+[ext_resource type="Texture2D" uid="uid://coa4aqb7lglg1" path="res://assets/backgrounds/nature_7/2.png" id="1_xuwjh"]
+[ext_resource type="Texture2D" uid="uid://db516v8xw85ks" path="res://assets/sprites/NecropolisSprites.png" id="2_ng53c"]
+[ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="3_0p36f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
+bg_color = Color(0.226973, 0.120290525, 0.06694623, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+bg_color = Color(0.048805833, 0.040196974, 0.24407098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sugp2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
+bg_color = Color(0.095433526, 0.09543354, 0.09543348, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+bg_color = Color(1, 0.11372549, 0.011764706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.08738441, 0.08738444, 0.087384336, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xuwjh"]
+bg_color = Color(0.09275522, 0.092755236, 0.092755176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ng53c"]
+bg_color = Color(0.36739781, 0.69815683, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.065035366, 0.06503533, 0.06503526, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xuwjh"]
+font_size = 28
+
+[node name="ConceptUI" type="Node2D" unique_id=1018516328]
+
+[node name="Background" type="Panel" parent="." unique_id=252146775]
+offset_left = -411.0
+offset_top = -231.0
+offset_right = 412.0
+offset_bottom = 230.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sugp2")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=702598316]
+zoom = Vector2(1.4, 1.4)
+
+[node name="Node" type="Node2D" parent="." unique_id=1146055176]
+position = Vector2(63, -149)
+
+[node name="Panel" type="Panel" parent="Node" unique_id=2028273378]
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_tefeu")
+
+[node name="TextureRect" type="TextureRect" parent="Node" unique_id=875246483]
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_xuwjh")
+expand_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Node" unique_id=1900432073]
+position = Vector2(129, 135)
+scale = Vector2(4, 4)
+texture = ExtResource("2_ng53c")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 97, 32, 32)
+
+[node name="BrownFrame" type="Sprite2D" parent="Node" unique_id=722386758]
+position = Vector2(128, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("3_0p36f")
+
+[node name="Node2" type="Node2D" parent="." unique_id=620451578]
+position = Vector2(-322, -150)
+
+[node name="Panel" type="Panel" parent="Node2" unique_id=1176558215]
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_tefeu")
+
+[node name="TextureRect" type="TextureRect" parent="Node2" unique_id=710285134]
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_xuwjh")
+expand_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2" unique_id=1507294337]
+position = Vector2(129, 135)
+scale = Vector2(4, 4)
+texture = ExtResource("2_ng53c")
+region_enabled = true
+region_rect = Rect2(0, 144, 32, 32)
+
+[node name="BrownFrame" type="Sprite2D" parent="Node2" unique_id=474758400]
+position = Vector2(128, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("3_0p36f")
+
+[node name="Panel" type="Panel" parent="." unique_id=458458330]
+offset_left = 84.0
+offset_top = -193.0
+offset_right = 295.0
+offset_bottom = -153.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=412584548]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -11.5
+offset_right = 29.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Zombie"
+label_settings = SubResource("LabelSettings_sugp2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="." unique_id=546718914]
+offset_left = -300.0
+offset_top = -193.0
+offset_right = -89.0
+offset_bottom = -153.0
+
+[node name="Label" type="Label" parent="Panel2" unique_id=1961055946]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -11.5
+offset_right = 29.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wraith"
+label_settings = SubResource("LabelSettings_sugp2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1976156086]
+offset_left = 65.0
+offset_top = 112.0
+offset_right = 319.0
+offset_bottom = 125.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jyhfs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tbgi4")
+value = 60.0
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="." unique_id=677968962]
+offset_left = -321.0
+offset_top = 112.0
+offset_right = -67.0
+offset_bottom = 125.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jyhfs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tbgi4")
+value = 30.0
+show_percentage = false
+
+[node name="ProgressBar3" type="ProgressBar" parent="." unique_id=445500384]
+offset_left = 325.0
+offset_top = -148.0
+offset_right = 336.0
+offset_bottom = 107.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xuwjh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ng53c")
+value = 90.0
+fill_mode = 3
+show_percentage = false
+
+[node name="ProgressBar4" type="ProgressBar" parent="." unique_id=2074928444]
+offset_left = -339.0
+offset_top = -148.0
+offset_right = -328.0
+offset_bottom = 107.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xuwjh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ng53c")
+value = 70.0
+fill_mode = 3
+show_percentage = false
+
+[node name="TurnCount" type="Label" parent="." unique_id=1978462861]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -71.0
+offset_right = 35.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Turn:
+6"
+label_settings = SubResource("LabelSettings_xuwjh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="." unique_id=53283996]
+offset_left = 63.0
+offset_top = 133.0
+offset_right = 322.0
+offset_bottom = 221.0
+
+[node name="Label" type="Label" parent="Panel3" unique_id=220085541]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enemy uses Slash Attack.
+Dealt 8 damage!"
+
+[node name="Panel4" type="Panel" parent="." unique_id=845495390]
+offset_left = -331.0
+offset_top = 133.0
+offset_right = -240.0
+offset_bottom = 161.0
+
+[node name="Label" type="Label" parent="Panel4" unique_id=1500977022]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Slash"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel7" type="Panel" parent="." unique_id=1995997141]
+offset_left = -331.0
+offset_top = 166.0
+offset_right = -240.0
+offset_bottom = 194.0
+
+[node name="Label" type="Label" parent="Panel7" unique_id=129145227]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Flee"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel5" type="Panel" parent="." unique_id=479428060]
+offset_left = -139.0
+offset_top = 133.0
+offset_right = -48.0
+offset_bottom = 161.0
+
+[node name="Label" type="Label" parent="Panel5" unique_id=535413953]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Potions"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel6" type="Panel" parent="." unique_id=1072885535]
+offset_left = -235.0
+offset_top = 133.0
+offset_right = -144.0
+offset_bottom = 161.0
+
+[node name="Label" type="Label" parent="Panel6" unique_id=1899928235]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Guard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1558691018]
+offset_left = -402.0
+offset_top = -148.0
+offset_right = -343.0
+offset_bottom = -99.0
+text = ":health:
+ x2"
+
+[node name="Label2" type="Label" parent="." unique_id=1180086811]
+offset_left = -405.0
+offset_top = -75.0
+offset_right = -346.0
+offset_bottom = -26.0
+text = ":stamina:
+ x2"
+
+[node name="Label3" type="Label" parent="." unique_id=1954705317]
+offset_left = -405.0
+offset_top = -12.0
+offset_right = -330.0
+offset_bottom = 37.0
+text = ":strength:
+ x2"

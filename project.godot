@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="TurnRPGCombatSystem"
+run/main_scene="uid://cagqldqy4wgfq"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bhkcdsl3u5ick"
 
 [physics]
 
@@ -20,5 +21,5 @@ config/icon="res://icon.svg"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="forward_plus"
