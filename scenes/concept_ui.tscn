@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bvtn633a1fqra"]
 
 [ext_resource type="Texture2D" uid="uid://coa4aqb7lglg1" path="res://assets/backgrounds/nature_7/2.png" id="1_xuwjh"]
-[ext_resource type="Texture2D" uid="uid://db516v8xw85ks" path="res://assets/sprites/NecropolisSprites.png" id="2_ng53c"]
+[ext_resource type="Texture2D" uid="uid://sbrqg28jmfka" path="res://assets/sprites/zombie.png" id="2_ng53c"]
 [ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="3_0p36f"]
+[ext_resource type="Texture2D" uid="uid://cnm75nvokqkvw" path="res://assets/sprites/wraith.png" id="4_0p36f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 bg_color = Color(0.226973, 0.120290525, 0.06694623, 1)
@@ -70,7 +71,6 @@ position = Vector2(129, 135)
 scale = Vector2(4, 4)
 texture = ExtResource("2_ng53c")
 flip_h = true
-region_enabled = true
 region_rect = Rect2(0, 97, 32, 32)
 
 [node name="BrownFrame" type="Sprite2D" parent="Node" unique_id=722386758]
@@ -97,8 +97,7 @@ expand_mode = 1
 [node name="Sprite2D" type="Sprite2D" parent="Node2" unique_id=1507294337]
 position = Vector2(129, 135)
 scale = Vector2(4, 4)
-texture = ExtResource("2_ng53c")
-region_enabled = true
+texture = ExtResource("4_0p36f")
 region_rect = Rect2(0, 144, 32, 32)
 
 [node name="BrownFrame" type="Sprite2D" parent="Node2" unique_id=474758400]

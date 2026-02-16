@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://oqxtj4qrfcl6"]
 
 [ext_resource type="Script" uid="uid://b7njgh3p7qkwg" path="res://scripts/character.gd" id="1_lrhn5"]
-[ext_resource type="PackedScene" uid="uid://3yv5vhbhvxqj" path="res://scenes/character_ui.tscn" id="1_rkhd4"]
-[ext_resource type="Texture2D" uid="uid://db516v8xw85ks" path="res://assets/sprites/NecropolisSprites.png" id="2_lrhn5"]
+[ext_resource type="PackedScene" uid="uid://3yv5vhbhvxqj" path="res://scenes/character_background.tscn" id="1_rkhd4"]
+[ext_resource type="Texture2D" uid="uid://cnm75nvokqkvw" path="res://assets/sprites/wraith.png" id="2_lrhn5"]
+[ext_resource type="Script" uid="uid://pgvdhcejofrt" path="res://scripts/attribute_bar.gd" id="3_dp8ca"]
+[ext_resource type="Script" uid="uid://yu3if7k43irx" path="res://scripts/character_sfx.gd" id="4_my7n2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkhd4"]
 bg_color = Color(0.04873965, 0.04873965, 0.048739605, 1)
@@ -15,44 +17,151 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_dp8ca"]
+font_size = 14
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my7n2"]
 bg_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp8ca"]
-bg_color = Color(0, 0.6666667, 0, 1)
+bg_color = Color(0, 0.52206355, 0, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_0lw5n"]
+font_size = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lw5n"]
+bg_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cgup"]
+bg_color = Color(0, 0.13871163, 0.7502209, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a5ia6"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_lrhn5"]
+font_size = 24
+
 [node name="Character" type="Node2D" unique_id=483189046]
 script = ExtResource("1_lrhn5")
-
-[node name="CharacterUI" parent="." unique_id=406308773 instance=ExtResource("1_rkhd4")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1895621292]
 position = Vector2(160, 160)
 scale = Vector2(6, 6)
 texture = ExtResource("2_lrhn5")
-region_enabled = true
 region_rect = Rect2(0, 144, 32, 32)
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=290310986]
-offset_top = 323.0
+offset_top = 325.0
 offset_right = 320.0
-offset_bottom = 339.0
+offset_bottom = 345.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rkhd4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lrhn5")
 value = 80.0
 show_percentage = false
+script = ExtResource("3_dp8ca")
+
+[node name="BarLabel" type="Label" parent="HealthBar" unique_id=1519663657]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "/"
+label_settings = SubResource("LabelSettings_dp8ca")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StaminaBar" type="ProgressBar" parent="." unique_id=357003392]
-offset_left = -19.0
-offset_right = -3.0
+offset_left = -25.0
+offset_right = -5.0
 offset_bottom = 320.0
 theme_override_styles/background = SubResource("StyleBoxFlat_my7n2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dp8ca")
 value = 70.0
 fill_mode = 3
 show_percentage = false
+script = ExtResource("3_dp8ca")
+
+[node name="BarLabel" type="Label" parent="StaminaBar" unique_id=1480438639]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.999993
+offset_top = 160.0
+offset_right = 310.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+text = "/"
+label_settings = SubResource("LabelSettings_0lw5n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaBar" type="ProgressBar" parent="." unique_id=1148109148]
+offset_left = -50.0
+offset_right = -30.0
+offset_bottom = 320.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0lw5n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2cgup")
+max_value = 40.0
+value = 30.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("3_dp8ca")
+
+[node name="BarLabel" type="Label" parent="ManaBar" unique_id=305029905]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.999993
+offset_top = 160.0
+offset_right = 310.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+text = "/"
+label_settings = SubResource("LabelSettings_a5ia6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterBackground" parent="." unique_id=406308773 instance=ExtResource("1_rkhd4")]
+z_index = -1
+
+[node name="CharacterName" type="Panel" parent="." unique_id=892839553]
+offset_top = -43.0
+offset_right = 320.0
+offset_bottom = -3.0
+
+[node name="CharacterNameLabel" type="Label" parent="CharacterName" unique_id=831204339]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_lrhn5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=554861743]
+bus = &"SFX"
+script = ExtResource("4_my7n2")

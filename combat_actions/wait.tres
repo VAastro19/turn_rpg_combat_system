@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://bv4bklksued3o"]
+
+[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="1_uc708"]
+
+[resource]
+script = ExtResource("1_uc708")
+display_name = "Wait"
+description = "Regains 15 stamina."
+stamina_regain = 15
+metadata/_custom_type_script = "uid://s5chh1juepma"

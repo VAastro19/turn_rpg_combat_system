@@ -1,18 +1,39 @@
 [gd_scene format=3 uid="uid://cagqldqy4wgfq"]
 
 [ext_resource type="PackedScene" uid="uid://doms5i30by1q3" path="res://scenes/ui.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://dg2cmkfjx7ygw" path="res://scripts/game_manager.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://oqxtj4qrfcl6" path="res://scenes/character.tscn" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://cnm75nvokqkvw" path="res://assets/sprites/wraith.png" id="4_tbgi4"]
+[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="4_tefeu"]
+[ext_resource type="Resource" uid="uid://bwpk2n7gsh2qs" path="res://combat_actions/attack.tres" id="5_85g3d"]
+[ext_resource type="Texture2D" uid="uid://sbrqg28jmfka" path="res://assets/sprites/zombie.png" id="5_tefeu"]
+[ext_resource type="Resource" uid="uid://bwhg05r1te3vo" path="res://combat_actions/heavy_attack.tres" id="6_choun"]
+[ext_resource type="Resource" uid="uid://bv4bklksued3o" path="res://combat_actions/wait.tres" id="7_ya4ey"]
 
 [node name="Main" type="Node2D" unique_id=807530277]
+script = ExtResource("1_sugp2")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1005716207]
 position = Vector2(576, 324)
 
 [node name="UI" parent="." unique_id=1376955447 instance=ExtResource("1_o5qli")]
 
-[node name="Character" parent="." unique_id=483189046 instance=ExtResource("2_0wfyh")]
+[node name="PlayerCharacter" parent="." unique_id=483189046 instance=ExtResource("2_0wfyh")]
 position = Vector2(129, 129)
+character_name = "Wraith"
+is_player = true
+max_mana = 50
+mana = 35
+combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey")])
+display_texture = ExtResource("4_tbgi4")
 
-[node name="Character2" parent="." unique_id=1502949294 instance=ExtResource("2_0wfyh")]
+[node name="AICharacter" parent="." unique_id=1502949294 instance=ExtResource("2_0wfyh")]
 position = Vector2(705, 129)
+character_name = "Zombie"
 facing_left = true
+health = 60
+max_stamina = 25
+stamina = 15
+mana = 20
+combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey")])
+display_texture = ExtResource("5_tefeu")

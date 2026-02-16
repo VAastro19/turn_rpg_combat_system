@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://3yv5vhbhvxqj"]
 
-[ext_resource type="Texture2D" uid="uid://coa4aqb7lglg1" path="res://assets/backgrounds/nature_7/2.png" id="1_a4ydu"]
-[ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="2_vk8kt"]
+[ext_resource type="Texture2D" uid="uid://coa4aqb7lglg1" path="res://assets/backgrounds/nature_7/2.png" id="1_chbrx"]
+[ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="2_1jurx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rm8vh"]
 bg_color = Color(0.08061551, 5.2943824e-07, 0.45642614, 1)
 
-[node name="CharacterUI" type="Control" unique_id=406308773]
+[node name="CharacterBackground" type="Control" unique_id=406308773]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
@@ -22,7 +22,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rm8vh")
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 320.0
-texture = ExtResource("1_a4ydu")
+texture = ExtResource("1_chbrx")
 expand_mode = 1
 stretch_mode = 6
 
@@ -30,4 +30,4 @@ stretch_mode = 6
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 320.0
-texture = ExtResource("2_vk8kt")
+texture = ExtResource("2_1jurx")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://bwhg05r1te3vo"]
+
+[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="1_wjxfs"]
+
+[resource]
+script = ExtResource("1_wjxfs")
+display_name = "Heavy Hit"
+description = "Deals 15 damage. Costs 10 stamina."
+damage = 15
+stamina_cost = 10
+metadata/_custom_type_script = "uid://s5chh1juepma"

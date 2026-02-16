@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://bwpk2n7gsh2qs"]
+
+[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="1_ik1ca"]
+
+[resource]
+script = ExtResource("1_ik1ca")
+display_name = "Attack"
+description = "Deals 8 damage. Costs 5 stamina."
+damage = 8
+stamina_cost = 5
+metadata/_custom_type_script = "uid://s5chh1juepma"
