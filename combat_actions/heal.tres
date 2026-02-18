@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://c0k5yxstgy5pt"]
+
+[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="1_laa7x"]
+
+[resource]
+script = ExtResource("1_laa7x")
+display_name = "Heal"
+description = "Regains 10 hit points. Costs 8 mana."
+type = 2
+heal_amount = 10
+mana_cost = 8
+metadata/_custom_type_script = "uid://s5chh1juepma"

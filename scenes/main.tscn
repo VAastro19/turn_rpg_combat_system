@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cnm75nvokqkvw" path="res://assets/sprites/wraith.png" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="4_tefeu"]
 [ext_resource type="Resource" uid="uid://bwpk2n7gsh2qs" path="res://combat_actions/attack.tres" id="5_85g3d"]
-[ext_resource type="Texture2D" uid="uid://sbrqg28jmfka" path="res://assets/sprites/zombie.png" id="5_tefeu"]
 [ext_resource type="Resource" uid="uid://bwhg05r1te3vo" path="res://combat_actions/heavy_attack.tres" id="6_choun"]
 [ext_resource type="Resource" uid="uid://bv4bklksued3o" path="res://combat_actions/wait.tres" id="7_ya4ey"]
+[ext_resource type="Resource" uid="uid://c0k5yxstgy5pt" path="res://combat_actions/heal.tres" id="8_muem4"]
+[ext_resource type="Texture2D" uid="uid://cfdasorrna5lp" path="res://assets/sprites/pikeman.png" id="9_85g3d"]
 
 [node name="Main" type="Node2D" unique_id=807530277]
 script = ExtResource("1_sugp2")
@@ -22,18 +23,20 @@ position = Vector2(576, 324)
 position = Vector2(129, 129)
 character_name = "Wraith"
 is_player = true
+health = 100
+stamina = 40
 max_mana = 50
-mana = 35
-combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey")])
+mana = 50
+combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey"), ExtResource("8_muem4")])
 display_texture = ExtResource("4_tbgi4")
 
 [node name="AICharacter" parent="." unique_id=1502949294 instance=ExtResource("2_0wfyh")]
 position = Vector2(705, 129)
-character_name = "Zombie"
+character_name = "Pikeman"
 facing_left = true
-health = 60
+health = 100
 max_stamina = 25
-stamina = 15
-mana = 20
+stamina = 25
+mana = 40
 combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey")])
-display_texture = ExtResource("5_tefeu")
+display_texture = ExtResource("9_85g3d")

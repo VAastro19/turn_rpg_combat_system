@@ -19,6 +19,10 @@ config/icon="uid://bhkcdsl3u5ick"
 
 buses/default_bus_layout="uid://cv1i66tssd8gd"
 
+[autoload]
+
+Enums="*uid://mvsx3nkcf3jm"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

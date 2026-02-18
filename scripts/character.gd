@@ -78,21 +78,32 @@ func regain_mana(amount: int) -> void:
 	mana = clamp(mana, 0, max_mana)
 	mana_bar.update(mana)
 
-func cast_combat_action(action: CombatAction, opponent: Character) -> void:
+## Perfroms combat action and returns exit code to the game manager.
+# On success returns 0, on action == null error returns 1, on not_enough_resource error returns 2
+func cast_combat_action(action: CombatAction, opponent: Character) -> int:
 	if action == null:
-		return
+		return 1
+
+	if action.stamina_cost > 0:
+		if action.stamina_cost <= stamina:
+			use_stamina(action.stamina_cost)
+		else:
+			print("Not enough stamina!")
+			return 2
+	if action.stamina_regain > 0:
+		regain_stamina(action.stamina_regain)
 		
+	if action.mana_cost > 0:
+		if action.mana_cost <= mana:
+			use_mana(action.mana_cost)
+		else:
+			print("Not enough mana!")
+			return 2
+	if action.mana_regain > 0:
+		regain_mana(action.mana_regain)
+
 	if action.damage > 0:
 		opponent.take_damage(action.damage)
 	if action.heal_amount > 0:
 		heal(action.heal_amount)
-		
-	if action.stamina_cost > 0:
-		use_stamina(action.stamina_cost)
-	if action.stamina_regain > 0:
-		regain_stamina(action.stamina_regain)
-	
-	if action.mana_cost > 0:
-		use_mana(action.mana_cost)
-	if action.mana_regain > 0:
-		regain_mana(action.mana_regain)
+	return 0

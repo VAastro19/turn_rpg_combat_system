@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7njgh3p7qkwg" path="res://scripts/character.gd" id="1_lrhn5"]
 [ext_resource type="PackedScene" uid="uid://3yv5vhbhvxqj" path="res://scenes/character_background.tscn" id="1_rkhd4"]
 [ext_resource type="Texture2D" uid="uid://cnm75nvokqkvw" path="res://assets/sprites/wraith.png" id="2_lrhn5"]
+[ext_resource type="Script" uid="uid://b11wx2pjtamvn" path="res://scripts/character_visuals.gd" id="3_0lw5n"]
 [ext_resource type="Script" uid="uid://pgvdhcejofrt" path="res://scripts/attribute_bar.gd" id="3_dp8ca"]
 [ext_resource type="Script" uid="uid://yu3if7k43irx" path="res://scripts/character_sfx.gd" id="4_my7n2"]
 
@@ -55,10 +56,12 @@ font_size = 24
 script = ExtResource("1_lrhn5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1895621292]
-position = Vector2(160, 160)
+position = Vector2(160, 256)
 scale = Vector2(6, 6)
 texture = ExtResource("2_lrhn5")
+offset = Vector2(0, -16)
 region_rect = Rect2(0, 144, 32, 32)
+script = ExtResource("3_0lw5n")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=290310986]
 offset_top = 325.0
