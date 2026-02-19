@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://bv4bklksued3o" path="res://combat_actions/wait.tres" id="7_ya4ey"]
 [ext_resource type="Resource" uid="uid://c0k5yxstgy5pt" path="res://combat_actions/heal.tres" id="8_muem4"]
 [ext_resource type="Texture2D" uid="uid://cfdasorrna5lp" path="res://assets/sprites/pikeman.png" id="9_85g3d"]
+[ext_resource type="Resource" uid="uid://cvck6df2oeabm" path="res://combat_actions/focus_energy.tres" id="9_ya4ey"]
+[ext_resource type="AudioStream" uid="uid://bmsm0pxukpokv" path="res://assets/audio/music/battleThemeA.mp3" id="12_eb6dy"]
 
 [node name="Main" type="Node2D" unique_id=807530277]
 script = ExtResource("1_sugp2")
@@ -27,7 +29,7 @@ health = 100
 stamina = 40
 max_mana = 50
 mana = 50
-combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey"), ExtResource("8_muem4")])
+combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey"), ExtResource("8_muem4"), ExtResource("9_ya4ey")])
 display_texture = ExtResource("4_tbgi4")
 
 [node name="AICharacter" parent="." unique_id=1502949294 instance=ExtResource("2_0wfyh")]
@@ -38,5 +40,12 @@ health = 100
 max_stamina = 25
 stamina = 25
 mana = 40
-combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey"), ExtResource("8_muem4")])
+combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey"), ExtResource("8_muem4"), ExtResource("9_ya4ey")])
 display_texture = ExtResource("9_85g3d")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1474478029]
+stream = ExtResource("12_eb6dy")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true

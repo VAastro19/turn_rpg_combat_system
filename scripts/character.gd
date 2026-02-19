@@ -5,6 +5,7 @@ class_name Character
 signal OnTakeDamage(health: int)
 signal OnHeal(health: int)
 signal OnRest(stamina: int)
+signal OnFocus(mana: int)
 
 @export var character_name: String
 @export var is_player: bool = false
@@ -63,6 +64,11 @@ func use_stamina(amount: int) -> void:
 	stamina -= amount
 	stamina = clamp(stamina, 0, max_stamina)
 	stamina_bar.update(stamina)
+	
+func use_mana(amount: int) -> void:
+	mana -= amount
+	mana = clamp(mana, 0, max_mana)
+	mana_bar.update(mana)
 
 func regain_stamina(amount: int) -> void:
 	stamina += amount
@@ -70,42 +76,52 @@ func regain_stamina(amount: int) -> void:
 	stamina_bar.update(stamina)
 	OnRest.emit(stamina)
 
-func use_mana(amount: int) -> void:
-	mana -= amount
-	mana = clamp(mana, 0, max_mana)
-	mana_bar.update(mana)
-
 func regain_mana(amount: int) -> void:
 	mana += amount
 	mana = clamp(mana, 0, max_mana)
 	mana_bar.update(mana)
+	OnFocus.emit(mana)
 
 ## Perfroms combat action and returns exit code to the game manager.
-# On success returns 0, on action == null error returns 1, on not_enough_resource error returns 2
+# On success returns 0, on action == null error returns 1, 
+# On not_enough_resource error returns 3, on already_at_max error returns 2
 func cast_combat_action(action: CombatAction, opponent: Character) -> int:
 	if action == null:
 		return 1
 
+	if action.heal_amount > 0:
+		if health == max_health:
+			print("Already at full health!")
+			return 2
+		heal(action.heal_amount)
+
+	if action.stamina_regain > 0:
+		if stamina == max_stamina:
+			print("Already at full stamina!")
+			return 2
+		regain_stamina(action.stamina_regain)
+
+	if action.mana_regain > 0:
+		if mana == max_mana:
+			print("Already at full mana!")
+			return 2
+		regain_mana(action.mana_regain)
+
+	if action.damage > 0:
+		opponent.take_damage(action.damage)
+	
 	if action.stamina_cost > 0:
 		if action.stamina_cost <= stamina:
 			use_stamina(action.stamina_cost)
 		else:
 			print("Not enough stamina!")
-			return 2
-	if action.stamina_regain > 0:
-		regain_stamina(action.stamina_regain)
-		
+			return 3
+	
 	if action.mana_cost > 0:
 		if action.mana_cost <= mana:
 			use_mana(action.mana_cost)
 		else:
 			print("Not enough mana!")
-			return 2
-	if action.mana_regain > 0:
-		regain_mana(action.mana_regain)
+			return 3
 
-	if action.damage > 0:
-		opponent.take_damage(action.damage)
-	if action.heal_amount > 0:
-		heal(action.heal_amount)
 	return 0
