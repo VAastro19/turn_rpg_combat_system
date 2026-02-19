@@ -23,6 +23,10 @@ buses/default_bus_layout="uid://cv1i66tssd8gd"
 
 Enums="*uid://mvsx3nkcf3jm"
 
+[gui]
+
+theme/custom_font="uid://d1kbqd0mbyplc"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

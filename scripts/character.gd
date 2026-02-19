@@ -4,6 +4,7 @@ class_name Character
 
 signal OnTakeDamage(health: int)
 signal OnHeal(health: int)
+signal OnRest(stamina: int)
 
 @export var character_name: String
 @export var is_player: bool = false
@@ -67,6 +68,7 @@ func regain_stamina(amount: int) -> void:
 	stamina += amount
 	stamina = clamp(stamina, 0, max_stamina)
 	stamina_bar.update(stamina)
+	OnRest.emit(stamina)
 
 func use_mana(amount: int) -> void:
 	mana -= amount

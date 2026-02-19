@@ -40,7 +40,10 @@ func _take_damage_visual(_health: int) -> void:
 	modulate = Color.WHITE
 
 func _heal_visual(_health: int) -> void:
-	pass
+	modulate = Color.GREEN
+	shake_intensity = max_shake_intensity / 5
+	await get_tree().create_timer(0.05).timeout
+	modulate = Color.WHITE
 
 func _get_random_offset() -> Vector2:
 	var y: float = randf_range(-shake_intensity, shake_intensity)

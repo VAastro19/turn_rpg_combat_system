@@ -38,5 +38,5 @@ health = 100
 max_stamina = 25
 stamina = 25
 mana = 40
-combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey")])
+combat_actions = Array[ExtResource("4_tefeu")]([ExtResource("5_85g3d"), ExtResource("6_choun"), ExtResource("7_ya4ey"), ExtResource("8_muem4")])
 display_texture = ExtResource("9_85g3d")

@@ -6,5 +6,7 @@
 script = ExtResource("1_uc708")
 display_name = "Wait"
 description = "Regains 15 stamina."
+message = "waits and restores 15 stamina!"
 stamina_regain = 15
+base_weight = 50.0
 metadata/_custom_type_script = "uid://s5chh1juepma"

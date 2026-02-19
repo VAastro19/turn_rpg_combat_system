@@ -1,19 +1,26 @@
 # character_sfx.gd
 extends AudioStreamPlayer
 
-var heal_sfx: AudioStream = preload("res://assets/audio/sfx/battle/heal.wav")
-var take_damage_sfx: AudioStream = preload("res://assets/audio/sfx/misc/random5.wav")
+var heal_sfx: AudioStream = preload("res://assets/audio/sfx/heal.mp3")
+var take_damage_sfx_1: AudioStream = preload("res://assets/audio/sfx/hurt1.wav")
+var take_damage_sfx_2: AudioStream = preload("res://assets/audio/sfx/hurt2.wav")
+var rest_sfx: AudioStream = preload("res://assets/audio/sfx/rest.wav")
 
 @onready var parent: Character = get_parent()
 
 func _ready() -> void:
 	parent.OnHeal.connect(_play_heal_sfx)
 	parent.OnTakeDamage.connect(_play_take_damage_sfx)
+	parent.OnRest.connect(_play_rest_sfx)
+
+func _play_rest_sfx(_stamina: int) -> void:
+	_play_audio(rest_sfx)
 
 func _play_heal_sfx(_health: int) -> void:
 	_play_audio(heal_sfx)
 
 func _play_take_damage_sfx(_health: int) -> void:
+	var take_damage_sfx: AudioStream = [take_damage_sfx_1, take_damage_sfx_2].pick_random()
 	_play_audio(take_damage_sfx)
 
 func _play_audio(audio: AudioStream) -> void:

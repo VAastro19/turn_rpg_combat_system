@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://doms5i30by1q3"]
 
 [ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="1_nt7q6"]
+[ext_resource type="Script" uid="uid://eoepblsconqg" path="res://scripts/description_label.gd" id="2_wm3ai"]
 [ext_resource type="Script" uid="uid://cco4xe86ue268" path="res://scripts/player_buttons.gd" id="2_x4jx1"]
 [ext_resource type="Script" uid="uid://d0hljcegjndgn" path="res://scripts/special_buttons.gd" id="3_yev5y"]
 [ext_resource type="Script" uid="uid://cskooek54fj62" path="res://scripts/combat_action_button.gd" id="4_wm3ai"]
+[ext_resource type="Script" uid="uid://cj7y6dm1fo4m1" path="res://scripts/turn_count_label.gd" id="6_8dubc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
 bg_color = Color(0.21816888, 0.10165576, 3.6098065e-08, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt7q6"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.087565444, 0.08756546, 0.087565444, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nt7q6"]
 font_size = 40
@@ -89,9 +91,12 @@ offset_right = -8.450348
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
-text = "Enemy uses [b]Slash Attack[/b].
-Dealt [b]8[/b] Damage."
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wm3ai")
 
 [node name="PlayerButtons" type="Control" parent="." unique_id=1554163923]
 layout_mode = 3
@@ -121,6 +126,7 @@ theme_override_colors/font_focus_color = Color(0.8627451, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 0, 1, 1)
 theme_override_colors/font_hover_color = Color(0.8627451, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.8627451, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Flee"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/MainButtons" unique_id=1783534943]
@@ -137,6 +143,7 @@ alignment = 1
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Attack"
 script = ExtResource("4_wm3ai")
 
@@ -144,6 +151,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Heavy Hit"
 script = ExtResource("4_wm3ai")
 
@@ -151,6 +159,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Wait"
 script = ExtResource("4_wm3ai")
 
@@ -163,19 +172,25 @@ alignment = 1
 [node name="SpellsButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=832292902]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.43137255, 0.8745098, 0.8745098, 1)
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Spells"
 
 [node name="AbilitiesButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=1904351791]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8745098, 0.43137255, 0.8745098, 1)
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Abilities"
 
 [node name="ItemsButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=1036772499]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.43137255, 1)
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Items"
 
 [node name="SpellsButtons" type="FlowContainer" parent="PlayerButtons" unique_id=1337411407]
@@ -195,6 +210,7 @@ script = ExtResource("3_yev5y")
 custom_minimum_size = Vector2(100, 90)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Back"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/SpellsButtons" unique_id=841205950]
@@ -211,6 +227,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Spell #1"
 script = ExtResource("4_wm3ai")
 
@@ -218,6 +235,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Spell #2"
 script = ExtResource("4_wm3ai")
 
@@ -225,6 +243,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Spell #3"
 script = ExtResource("4_wm3ai")
 
@@ -237,6 +256,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Spell #4"
 script = ExtResource("4_wm3ai")
 
@@ -244,6 +264,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Spell #5"
 script = ExtResource("4_wm3ai")
 
@@ -251,6 +272,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Spell #6"
 script = ExtResource("4_wm3ai")
 
@@ -271,6 +293,7 @@ script = ExtResource("3_yev5y")
 custom_minimum_size = Vector2(100, 90)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Back"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/AbilitiesButtons" unique_id=112599872]
@@ -286,6 +309,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Ability #1"
 script = ExtResource("4_wm3ai")
 
@@ -293,6 +317,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Ability #2"
 script = ExtResource("4_wm3ai")
 
@@ -300,6 +325,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Ability #3"
 script = ExtResource("4_wm3ai")
 
@@ -312,6 +338,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Ability #4"
 script = ExtResource("4_wm3ai")
 
@@ -319,6 +346,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Ability #5"
 script = ExtResource("4_wm3ai")
 
@@ -326,6 +354,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Ability #6"
 script = ExtResource("4_wm3ai")
 
@@ -346,6 +375,7 @@ script = ExtResource("3_yev5y")
 custom_minimum_size = Vector2(100, 90)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Back"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/ItemsButtons" unique_id=1031269398]
@@ -361,6 +391,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Item #1"
 script = ExtResource("4_wm3ai")
 
@@ -368,6 +399,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Item #2"
 script = ExtResource("4_wm3ai")
 
@@ -375,6 +407,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Item #3"
 script = ExtResource("4_wm3ai")
 
@@ -387,6 +420,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Item #4"
 script = ExtResource("4_wm3ai")
 
@@ -394,6 +428,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Item #5"
 script = ExtResource("4_wm3ai")
 
@@ -401,6 +436,7 @@ script = ExtResource("4_wm3ai")
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Item #6"
 script = ExtResource("4_wm3ai")
 
@@ -410,21 +446,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -126.0
-offset_right = 70.0
-offset_bottom = -13.0
+offset_left = -68.0
+offset_top = -113.0
+offset_right = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 1
 text = "Turn:
-6"
+1"
 label_settings = SubResource("LabelSettings_nt7q6")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("6_8dubc")
 
-[connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop/AttackButton" to="PlayerButtons/MainButtons" method="_on_attack_button_pressed"]
 [connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/SpellsButton" to="PlayerButtons" method="_on_spells_button_pressed"]
 [connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/AbilitiesButton" to="PlayerButtons" method="_on_abilities_button_pressed"]
 [connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/ItemsButton" to="PlayerButtons" method="_on_items_button_pressed"]

@@ -4,6 +4,7 @@ class_name CombatAction
 
 @export var display_name: String
 @export var description: String
+@export var message: String
 @export var type: Enums.CombatActionType
 
 @export var damage: int = 0

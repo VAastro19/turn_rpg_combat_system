@@ -2,6 +2,7 @@
 extends Control
 
 @onready var game_manager: Node2D = get_parent().get_parent()
+@onready var description_label: RichTextLabel = $"../Description/Label"
 
 @onready var main_buttons_container: FlowContainer = $MainButtons
 @onready var spells_buttons_container: FlowContainer = $SpellsButtons
@@ -81,10 +82,10 @@ func _button_pressed(button: CombatActionButton) -> void:
 	game_manager.player_cast_combat_action(button.combat_action)
 
 func _button_entered(button: CombatActionButton) -> void:
-	pass
+	description_label.text = "[b]" + button.combat_action.display_name + "[/b]\n" + button.combat_action.description
 
-func _button_exited(button: CombatActionButton) -> void:
-	pass
+func _button_exited(_button: CombatActionButton) -> void:
+	description_label.text = description_label.last_message
 
 func _on_spells_button_pressed() -> void:
 	main_buttons_container.visible = false
