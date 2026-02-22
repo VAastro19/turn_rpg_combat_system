@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cagqldqy4wgfq"]
+
+[ext_resource type="Script" uid="uid://dg2cmkfjx7ygw" path="res://scripts/combat_system_manager.gd" id="1_msud5"]
+[ext_resource type="PackedScene" uid="uid://doms5i30by1q3" path="res://scenes/ui.tscn" id="2_1jje8"]
+[ext_resource type="PackedScene" uid="uid://oqxtj4qrfcl6" path="res://scenes/character.tscn" id="3_2kwlm"]
+[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="4_5jlpm"]
+[ext_resource type="Resource" uid="uid://bwpk2n7gsh2qs" path="res://combat_actions/attack.tres" id="5_stj80"]
+[ext_resource type="Resource" uid="uid://bwhg05r1te3vo" path="res://combat_actions/heavy_attack.tres" id="6_75guj"]
+[ext_resource type="Resource" uid="uid://bv4bklksued3o" path="res://combat_actions/wait.tres" id="7_x58r8"]
+[ext_resource type="Resource" uid="uid://c0k5yxstgy5pt" path="res://combat_actions/heal.tres" id="8_1wsbt"]
+[ext_resource type="Resource" uid="uid://cvck6df2oeabm" path="res://combat_actions/focus_energy.tres" id="9_0bc51"]
+[ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="10_qo6uo"]
+[ext_resource type="Texture2D" uid="uid://bfpd5h0t1hhph" path="res://assets/sprites/pikeman.png" id="11_7q6tm"]
+[ext_resource type="Script" uid="uid://c7pdi1maytg32" path="res://scripts/combat_system_music.gd" id="13_1jje8"]
+
+[node name="CombatSystem" type="Node2D" unique_id=807530277]
+script = ExtResource("1_msud5")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1005716207]
+position = Vector2(576, 324)
+
+[node name="UI" parent="." unique_id=1376955447 instance=ExtResource("2_1jje8")]
+
+[node name="PlayerCharacter" parent="." unique_id=483189046 instance=ExtResource("3_2kwlm")]
+position = Vector2(129, 129)
+character_name = "Knight"
+is_player = true
+max_health = 120
+health = 120
+stamina = 40
+max_mana = 30
+combat_actions = Array[ExtResource("4_5jlpm")]([ExtResource("5_stj80"), ExtResource("6_75guj"), ExtResource("7_x58r8"), ExtResource("8_1wsbt"), ExtResource("9_0bc51")])
+display_texture = ExtResource("10_qo6uo")
+
+[node name="AICharacter" parent="." unique_id=1502949294 instance=ExtResource("3_2kwlm")]
+position = Vector2(705, 129)
+character_name = "Pikeman"
+facing_left = true
+health = 100
+max_stamina = 30
+max_mana = 20
+mana = 20
+combat_actions = Array[ExtResource("4_5jlpm")]([ExtResource("5_stj80"), ExtResource("6_75guj"), ExtResource("7_x58r8"), ExtResource("8_1wsbt"), ExtResource("9_0bc51")])
+display_texture = ExtResource("11_7q6tm")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1474478029]
+autoplay = true
+bus = &"Music"
+script = ExtResource("13_1jje8")
+
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d0hljcegjndgn" path="res://scripts/special_buttons.gd" id="3_yev5y"]
 [ext_resource type="PackedScene" uid="uid://bwctbcsxclaw7" path="res://scenes/combat_action_button.tscn" id="4_cgfq5"]
 [ext_resource type="Script" uid="uid://cj7y6dm1fo4m1" path="res://scripts/turn_count_label.gd" id="6_8dubc"]
+[ext_resource type="Script" uid="uid://crkrtpl1g0ldh" path="res://scripts/flee_popup.gd" id="7_cgfq5"]
 [ext_resource type="Script" uid="uid://bgo4guvlvtiee" path="res://scripts/end_screen.gd" id="7_ktti3"]
 [ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="7_p7vwb"]
 
@@ -22,6 +23,11 @@ outline_size = 2
 outline_color = Color(1, 1, 0.15294118, 1)
 shadow_size = 6
 shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7dvkv"]
+font_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.85882354)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dubc"]
 bg_color = Color(0.19215687, 0.105882354, 0.039215688, 1)
@@ -501,8 +507,94 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_8dubc")
 
-[node name="EndScreen" type="Panel" parent="." unique_id=298450436]
+[node name="FleePopup" type="Panel" parent="." unique_id=2001495555]
 visible = false
+offset_left = 74.0
+offset_top = 497.0
+offset_right = 504.0
+offset_bottom = 587.0
+script = ExtResource("7_cgfq5")
+
+[node name="FleeLabel" type="Label" parent="FleePopup" unique_id=1369155439]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "Are you sure you want to flee?"
+label_settings = SubResource("LabelSettings_7dvkv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Frame" type="NinePatchRect" parent="FleePopup" unique_id=1608841259]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FleePopup" unique_id=1463863628]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -50.0
+offset_right = 141.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="YesButton" type="Button" parent="FleePopup/HBoxContainer" unique_id=1933058681]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+text = "Yes"
+
+[node name="ButtonFrame" type="NinePatchRect" parent="FleePopup/HBoxContainer/YesButton" unique_id=1117842812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="NoButton" type="Button" parent="FleePopup/HBoxContainer" unique_id=1737506925]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+text = "No"
+
+[node name="ButtonFrame" type="NinePatchRect" parent="FleePopup/HBoxContainer/NoButton" unique_id=18598254]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="EndScreen" type="Panel" parent="." unique_id=298450436]
 z_index = 5
 anchors_preset = 15
 anchor_right = 1.0
@@ -642,7 +734,10 @@ grow_vertical = 2
 scale = Vector2(3, 3)
 texture = ExtResource("7_p7vwb")
 
+[connection signal="pressed" from="PlayerButtons/MainButtons/FleeButton" to="PlayerButtons" method="_on_flee_button_pressed"]
 [connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/SpellsButton" to="PlayerButtons" method="_on_spells_button_pressed"]
 [connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/AbilitiesButton" to="PlayerButtons" method="_on_abilities_button_pressed"]
 [connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/ItemsButton" to="PlayerButtons" method="_on_items_button_pressed"]
+[connection signal="pressed" from="FleePopup/HBoxContainer/YesButton" to="FleePopup" method="_on_yes_button_pressed"]
+[connection signal="pressed" from="FleePopup/HBoxContainer/NoButton" to="FleePopup" method="_on_no_button_pressed"]
 [connection signal="pressed" from="EndScreen/ContinueButton" to="EndScreen" method="_on_continue_button_pressed"]

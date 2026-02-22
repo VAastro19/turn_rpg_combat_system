@@ -1,13 +1,15 @@
 # player_buttons.gd
 extends Control
 
-@onready var game_manager: Node2D = get_parent().get_parent()
+@onready var combat_system_manager: Node2D = get_parent().get_parent()
 @onready var description_label: RichTextLabel = $"../Description/Label"
 
 @onready var main_buttons_container: FlowContainer = $MainButtons
 @onready var spells_buttons_container: FlowContainer = $SpellsButtons
 @onready var abilities_buttons_container: FlowContainer = $AbilitiesButtons
 @onready var items_buttons_container: FlowContainer = $ItemsButtons
+@onready var flee_button: Button = $MainButtons/FleeButton
+@onready var flee_popup: Panel = $"../FleePopup"
 
 var main_buttons: Array[CombatActionButton] = []
 var spells_buttons: Array[CombatActionButton] = []
@@ -79,7 +81,7 @@ func _set_combat_actions(array: Array[CombatActionButton], actions: Array[Combat
 		array[i].set_combat_action(actions[i])
 
 func _button_pressed(button: CombatActionButton) -> void:
-	game_manager.player_cast_combat_action(button.combat_action)
+	combat_system_manager.player_cast_combat_action(button.combat_action)
 
 func _button_entered(button: CombatActionButton) -> void:
 	description_label.text = "[b]" + button.combat_action.display_name + "[/b]\n" + button.combat_action.description
@@ -98,3 +100,7 @@ func _on_abilities_button_pressed() -> void:
 func _on_items_button_pressed() -> void:
 	main_buttons_container.visible = false
 	items_buttons_container.visible = true
+
+func _on_flee_button_pressed() -> void:
+	main_buttons_container.visible = false
+	flee_popup.visible = true

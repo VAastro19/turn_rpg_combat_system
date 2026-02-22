@@ -1,5 +1,8 @@
-# game_manager.gd
+# combat_system_manager.gd
 extends Node2D
+
+signal OnVictory
+signal OnDefeat
 
 @onready var player: Character = $PlayerCharacter
 @onready var ai: Character = $AICharacter
@@ -22,15 +25,18 @@ func _ready() -> void:
 func _on_player_damaged(health: int) -> void:
 	if health <= 0:
 		game_over = true
-		_show_end_screen("ai")
+		show_end_screen("ai")
+		OnDefeat.emit()
 
 func _on_ai_damaged(health: int) -> void:
 	if health <= 0:
 		game_over = true
-		_show_end_screen("player")
+		show_end_screen("player")
+		OnVictory.emit()
 
-func _show_end_screen(victor: String) -> void:
+func show_end_screen(victor: String) -> void:
 	end_screen.set_result_label(victor)
+	await get_tree().create_timer(0.3).timeout
 	player.visible = false
 	ai.visible = false
 	end_screen.visible = true
