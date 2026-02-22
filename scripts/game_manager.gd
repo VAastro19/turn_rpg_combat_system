@@ -6,13 +6,34 @@ extends Node2D
 @onready var player_buttons: Control = $UI/PlayerButtons
 @onready var description_label: RichTextLabel = $UI/Description/Label
 @onready var turn_count_label: Label = $UI/TurnCountLabel
+@onready var end_screen: Panel = $UI/EndScreen
 
 var turn_count: int = 0
 var controller: Character
 var can_cast: bool = false
+var game_over: bool = false
 
 func _ready() -> void:
 	next_turn()
+	end_screen.visible = false
+	player.OnTakeDamage.connect(_on_player_damaged)
+	ai.OnTakeDamage.connect(_on_ai_damaged)
+
+func _on_player_damaged(health: int) -> void:
+	if health <= 0:
+		game_over = true
+		_show_end_screen("ai")
+
+func _on_ai_damaged(health: int) -> void:
+	if health <= 0:
+		game_over = true
+		_show_end_screen("player")
+
+func _show_end_screen(victor: String) -> void:
+	end_screen.set_result_label(victor)
+	player.visible = false
+	ai.visible = false
+	end_screen.visible = true
 
 func next_turn() -> void:
 	if controller == ai or controller == null:
@@ -23,19 +44,20 @@ func next_turn() -> void:
 		turn_count_label.update(turn_count)
 	else:
 		controller = ai
-	
-	if controller == player:
-		player_buttons.manage_combat_actions(player.combat_actions)
-	else:
-		var wait_time = randf_range(0.5, 1.5)
-		await get_tree().create_timer(wait_time).timeout
-		
-		var action_to_cast = ai_decide_combat_action_to_cast()
-		ai.cast_combat_action(action_to_cast, player)
-		
-		description_label.update("Enemy " + action_to_cast.message)
-		await get_tree().create_timer(0.5).timeout
-		next_turn()
+
+	if not game_over:
+		if controller == player:
+			player_buttons.manage_combat_actions(player.combat_actions)
+		else:
+			var wait_time = randf_range(0.5, 1.5)
+			await get_tree().create_timer(wait_time).timeout
+			
+			var action_to_cast = ai_decide_combat_action_to_cast()
+			ai.cast_combat_action(action_to_cast, player)
+			
+			description_label.update("Enemy " + action_to_cast.message)
+			await get_tree().create_timer(0.5).timeout
+			next_turn()
 
 func player_cast_combat_action(action: CombatAction) -> void:
 	if controller != player:
@@ -85,7 +107,12 @@ func ai_decide_combat_action_to_cast() -> CombatAction:
 				weight *= 1 + (1 - ai_stamina_percent)
 				
 		if action.mana_regain > 0:
-			weight *= 1 + (1 - ai_mana_percent)
+			if ai_mana_percent <= 0.2:
+				weight *= 3
+			elif ai_stamina_percent >= 0.8:
+				weight *= 0.1
+			else:
+				weight *= 1 + (1 - ai_mana_percent)
 		
 		weights.append(weight)
 		total_weight += weight

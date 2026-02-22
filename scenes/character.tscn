@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b7njgh3p7qkwg" path="res://scripts/character.gd" id="1_lrhn5"]
 [ext_resource type="PackedScene" uid="uid://3yv5vhbhvxqj" path="res://scenes/character_background.tscn" id="1_rkhd4"]
-[ext_resource type="Texture2D" uid="uid://cnm75nvokqkvw" path="res://assets/sprites/wraith.png" id="2_lrhn5"]
+[ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="2_0lw5n"]
 [ext_resource type="Script" uid="uid://b11wx2pjtamvn" path="res://scripts/character_visuals.gd" id="3_0lw5n"]
 [ext_resource type="Script" uid="uid://pgvdhcejofrt" path="res://scripts/attribute_bar.gd" id="3_dp8ca"]
 [ext_resource type="Script" uid="uid://yu3if7k43irx" path="res://scripts/character_sfx.gd" id="4_my7n2"]
+[ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="6_2cgup"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkhd4"]
 bg_color = Color(0.04873965, 0.04873965, 0.048739605, 1)
@@ -50,16 +51,16 @@ border_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
 font_size = 14
 
 [sub_resource type="LabelSettings" id="LabelSettings_lrhn5"]
-font_size = 24
+font_size = 30
 
 [node name="Character" type="Node2D" unique_id=483189046]
 script = ExtResource("1_lrhn5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1895621292]
 position = Vector2(160, 256)
-scale = Vector2(6, 6)
-texture = ExtResource("2_lrhn5")
-offset = Vector2(0, -16)
+scale = Vector2(3, 3)
+texture = ExtResource("2_0lw5n")
+offset = Vector2(0, -32)
 region_rect = Rect2(0, 144, 32, 32)
 script = ExtResource("3_0lw5n")
 
@@ -164,6 +165,20 @@ grow_vertical = 2
 label_settings = SubResource("LabelSettings_lrhn5")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Frame" type="NinePatchRect" parent="CharacterName" unique_id=401549136]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_2cgup")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=554861743]
 bus = &"SFX"

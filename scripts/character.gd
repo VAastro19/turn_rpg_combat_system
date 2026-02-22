@@ -33,6 +33,7 @@ var mana_bar_offset: float = 350
 func _ready() -> void:
 	character_name_label.text = character_name
 	sprite.texture = display_texture
+	sprite.setup_texture()
 	
 	if facing_left:
 		sprite.flip_h = true

@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://eoepblsconqg" path="res://scripts/description_label.gd" id="2_wm3ai"]
 [ext_resource type="Script" uid="uid://cco4xe86ue268" path="res://scripts/player_buttons.gd" id="2_x4jx1"]
 [ext_resource type="Script" uid="uid://d0hljcegjndgn" path="res://scripts/special_buttons.gd" id="3_yev5y"]
-[ext_resource type="Script" uid="uid://cskooek54fj62" path="res://scripts/combat_action_button.gd" id="4_wm3ai"]
+[ext_resource type="PackedScene" uid="uid://bwctbcsxclaw7" path="res://scenes/combat_action_button.tscn" id="4_cgfq5"]
 [ext_resource type="Script" uid="uid://cj7y6dm1fo4m1" path="res://scripts/turn_count_label.gd" id="6_8dubc"]
+[ext_resource type="Script" uid="uid://bgo4guvlvtiee" path="res://scripts/end_screen.gd" id="7_ktti3"]
+[ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="7_p7vwb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
 bg_color = Color(0.21816888, 0.10165576, 3.6098065e-08, 1)
@@ -20,6 +22,18 @@ outline_size = 2
 outline_color = Color(1, 1, 0.15294118, 1)
 shadow_size = 6
 shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dubc"]
+bg_color = Color(0.19215687, 0.105882354, 0.039215688, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p7vwb"]
+font_size = 40
+font_color = Color(1, 1, 0.54901963, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cgfq5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ktti3"]
+font_size = 22
 
 [node name="UI" type="CanvasLayer" unique_id=1376955447]
 layer = -1
@@ -98,6 +112,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_wm3ai")
 
+[node name="Frame" type="NinePatchRect" parent="Description" unique_id=385068162]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="PlayerButtons" type="Control" parent="." unique_id=1554163923]
 layout_mode = 3
 anchors_preset = 0
@@ -129,6 +157,20 @@ theme_override_colors/font_hover_pressed_color = Color(0.8627451, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Flee"
 
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/FleeButton" unique_id=1834351534]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/MainButtons" unique_id=1783534943]
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -139,29 +181,16 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="AttackButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop" unique_id=427047886]
-custom_minimum_size = Vector2(100, 40)
+[node name="AttackButton" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop" unique_id=2106514306 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
-text = "Attack"
-script = ExtResource("4_wm3ai")
 
-[node name="HeavyAttackButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop" unique_id=2024382298]
-custom_minimum_size = Vector2(100, 40)
+[node name="HeavyHitButton" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop" unique_id=1254640704 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Heavy Hit"
-script = ExtResource("4_wm3ai")
 
-[node name="WaitButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop" unique_id=84449929]
-custom_minimum_size = Vector2(100, 40)
+[node name="WaitButton" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop" unique_id=2023004818 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Wait"
-script = ExtResource("4_wm3ai")
 
 [node name="HBoxContainerBottom" type="HBoxContainer" parent="PlayerButtons/MainButtons/VBoxContainer" unique_id=81072897]
 custom_minimum_size = Vector2(100, 40)
@@ -177,6 +206,20 @@ theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "Spells"
 
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/SpellsButton" unique_id=1306061864]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="AbilitiesButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=1904351791]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
@@ -185,6 +228,20 @@ theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "Abilities"
 
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/AbilitiesButton" unique_id=1463587011]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="ItemsButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=1036772499]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
@@ -192,6 +249,20 @@ theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.43137255, 1)
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "Items"
+
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/ItemsButton" unique_id=529433082]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="SpellsButtons" type="FlowContainer" parent="PlayerButtons" unique_id=1337411407]
 visible = false
@@ -213,6 +284,20 @@ theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Back"
 
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/SpellsButtons/BackButton" unique_id=1734796922]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/SpellsButtons" unique_id=841205950]
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -223,58 +308,34 @@ custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SpellButton1" type="Button" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerTop" unique_id=1674607833]
-custom_minimum_size = Vector2(100, 40)
+[node name="SpellButton1" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerTop" unique_id=1050280229 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Spell #1"
-script = ExtResource("4_wm3ai")
 
-[node name="SpellButton2" type="Button" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerTop" unique_id=197308098]
-custom_minimum_size = Vector2(100, 40)
+[node name="SpellButton2" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerTop" unique_id=828852315 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Spell #2"
-script = ExtResource("4_wm3ai")
 
-[node name="SpellButton3" type="Button" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerTop" unique_id=1056619756]
-custom_minimum_size = Vector2(100, 40)
+[node name="SpellButton3" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerTop" unique_id=1245397742 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Spell #3"
-script = ExtResource("4_wm3ai")
 
 [node name="HBoxContainerBottom" type="HBoxContainer" parent="PlayerButtons/SpellsButtons/VBoxContainer" unique_id=119376817]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SpellButton4" type="Button" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerBottom" unique_id=206034275]
-custom_minimum_size = Vector2(100, 40)
+[node name="SpellButton4" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerBottom" unique_id=1742490417 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Spell #4"
-script = ExtResource("4_wm3ai")
 
-[node name="SpellButton5" type="Button" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerBottom" unique_id=1279969052]
-custom_minimum_size = Vector2(100, 40)
+[node name="SpellButton5" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerBottom" unique_id=1781435264 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Spell #5"
-script = ExtResource("4_wm3ai")
 
-[node name="SpellButton6" type="Button" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerBottom" unique_id=893674600]
-custom_minimum_size = Vector2(100, 40)
+[node name="SpellButton6" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerBottom" unique_id=777900011 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Spell #6"
-script = ExtResource("4_wm3ai")
 
 [node name="AbilitiesButtons" type="FlowContainer" parent="PlayerButtons" unique_id=2083994477]
 visible = false
@@ -296,6 +357,20 @@ theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Back"
 
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/AbilitiesButtons/BackButton" unique_id=477606953]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/AbilitiesButtons" unique_id=112599872]
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -305,58 +380,34 @@ custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="AbilityButton1" type="Button" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerTop" unique_id=1260543890]
-custom_minimum_size = Vector2(100, 40)
+[node name="AbilityButton1" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerTop" unique_id=1406873721 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Ability #1"
-script = ExtResource("4_wm3ai")
 
-[node name="AbilityButton2" type="Button" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerTop" unique_id=1519490069]
-custom_minimum_size = Vector2(100, 40)
+[node name="AbilityButton2" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerTop" unique_id=867991743 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Ability #2"
-script = ExtResource("4_wm3ai")
 
-[node name="AbilityButton3" type="Button" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerTop" unique_id=2052200048]
-custom_minimum_size = Vector2(100, 40)
+[node name="AbilityButton3" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerTop" unique_id=1885206996 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Ability #3"
-script = ExtResource("4_wm3ai")
 
 [node name="HBoxContainerBottom" type="HBoxContainer" parent="PlayerButtons/AbilitiesButtons/VBoxContainer" unique_id=397953533]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="AbilityButton4" type="Button" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerBottom" unique_id=1988476960]
-custom_minimum_size = Vector2(100, 40)
+[node name="AbilityButton4" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerBottom" unique_id=752327032 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Ability #4"
-script = ExtResource("4_wm3ai")
 
-[node name="AbilityButton5" type="Button" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerBottom" unique_id=947920769]
-custom_minimum_size = Vector2(100, 40)
+[node name="AbilityButton5" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerBottom" unique_id=1444607998 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Ability #5"
-script = ExtResource("4_wm3ai")
 
-[node name="AbilityButton6" type="Button" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerBottom" unique_id=213645955]
-custom_minimum_size = Vector2(100, 40)
+[node name="AbilityButton6" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerBottom" unique_id=1676413428 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Ability #6"
-script = ExtResource("4_wm3ai")
 
 [node name="ItemsButtons" type="FlowContainer" parent="PlayerButtons" unique_id=1125047260]
 visible = false
@@ -378,6 +429,20 @@ theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Back"
 
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/ItemsButtons/BackButton" unique_id=1302963999]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/ItemsButtons" unique_id=1031269398]
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -387,58 +452,34 @@ custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ItemButton1" type="Button" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerTop" unique_id=558134488]
-custom_minimum_size = Vector2(100, 40)
+[node name="ItemButton1" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerTop" unique_id=699046802 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Item #1"
-script = ExtResource("4_wm3ai")
 
-[node name="ItemButton2" type="Button" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerTop" unique_id=936042916]
-custom_minimum_size = Vector2(100, 40)
+[node name="ItemButton2" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerTop" unique_id=1589396691 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Item #2"
-script = ExtResource("4_wm3ai")
 
-[node name="ItemButton3" type="Button" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerTop" unique_id=827737084]
-custom_minimum_size = Vector2(100, 40)
+[node name="ItemButton3" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerTop" unique_id=1880644841 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Item #3"
-script = ExtResource("4_wm3ai")
 
 [node name="HBoxContainerBottom" type="HBoxContainer" parent="PlayerButtons/ItemsButtons/VBoxContainer" unique_id=143707720]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ItemButton4" type="Button" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerBottom" unique_id=1766037241]
-custom_minimum_size = Vector2(100, 40)
+[node name="ItemButton4" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerBottom" unique_id=2054655060 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Item #4"
-script = ExtResource("4_wm3ai")
 
-[node name="ItemButton5" type="Button" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerBottom" unique_id=76773756]
-custom_minimum_size = Vector2(100, 40)
+[node name="ItemButton5" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerBottom" unique_id=1303203966 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Item #5"
-script = ExtResource("4_wm3ai")
 
-[node name="ItemButton6" type="Button" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerBottom" unique_id=350497949]
-custom_minimum_size = Vector2(100, 40)
+[node name="ItemButton6" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerBottom" unique_id=894350007 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
 text = "Item #6"
-script = ExtResource("4_wm3ai")
 
 [node name="TurnCountLabel" type="Label" parent="." unique_id=831987009]
 anchors_preset = 8
@@ -460,6 +501,148 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_8dubc")
 
+[node name="EndScreen" type="Panel" parent="." unique_id=298450436]
+visible = false
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8dubc")
+script = ExtResource("7_ktti3")
+
+[node name="Frame" type="NinePatchRect" parent="EndScreen" unique_id=323891054]
+layout_mode = 0
+offset_right = 576.0
+offset_bottom = 324.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="ResultLabel" type="Label" parent="EndScreen" unique_id=828230821]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.5
+offset_top = -213.0
+offset_right = 269.5
+offset_bottom = -143.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have conquered your foe!"
+label_settings = SubResource("LabelSettings_p7vwb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuoteLabel" type="RichTextLabel" parent="EndScreen" unique_id=532884020]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -147.0
+offset_right = 151.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=20][i],,With great power comes great responsibility.\"[/i]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="EndScreen" unique_id=1040283599]
+material = SubResource("CanvasItemMaterial_cgfq5")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -55.0
+offset_right = 50.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+
+[node name="ButtonFrame" type="NinePatchRect" parent="EndScreen/ContinueButton" unique_id=1626902926]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nt7q6")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="GainedLabel" type="Label" parent="EndScreen" unique_id=1549247624]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = 15.0
+offset_right = 69.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have gained:"
+label_settings = SubResource("LabelSettings_ktti3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LootLabel" type="RichTextLabel" parent="EndScreen" unique_id=398534742]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -462.0
+offset_top = 47.0
+offset_right = 462.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=18]+20 EXP,	+15 GOLD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerSprite" type="TextureRect" parent="EndScreen" unique_id=1636798184]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = 108.0
+offset_right = -21.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("7_p7vwb")
+
 [connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/SpellsButton" to="PlayerButtons" method="_on_spells_button_pressed"]
 [connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/AbilitiesButton" to="PlayerButtons" method="_on_abilities_button_pressed"]
 [connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/ItemsButton" to="PlayerButtons" method="_on_items_button_pressed"]
+[connection signal="pressed" from="EndScreen/ContinueButton" to="EndScreen" method="_on_continue_button_pressed"]

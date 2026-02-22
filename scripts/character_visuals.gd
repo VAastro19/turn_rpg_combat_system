@@ -7,19 +7,25 @@ extends Sprite2D
 @export var shake_damping: float = 10.0
 var shake_intensity: float = 0.0
 
-@export var bob_amplitude: float = 0.1
-@export var bob_frequency: float = 10.0
+@export var bob_amplitude: float = 0.05
+@export var bob_frequency: float = 7.0
 var bob_offset: float
 
 var initial_y_scale: float
 var initial_offset: Vector2
+var sprite_size: float = 192
 
 func _ready() -> void:
 	parent.OnTakeDamage.connect(_take_damage_visual)
 	parent.OnHeal.connect(_heal_visual)
+	bob_offset = randf_range(1.0, 5.0)
+
+func setup_texture() -> void:
+	scale.x = sprite_size / texture.get_width()
+	scale.y = sprite_size / texture.get_height()
+	offset.y = - texture.get_height() / 2.0
 	initial_y_scale = scale.y
 	initial_offset = offset
-	bob_offset = randf_range(1.0, 5.0)
 
 func _process(delta: float) -> void:
 	_bob()
