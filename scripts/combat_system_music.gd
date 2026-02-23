@@ -22,7 +22,7 @@ func _play_defeat_music() -> void:
 	_play_audio(defeat_music)
 
 func _play_battle_music() -> void:
-	volume_db = -5.0
+	volume_db = -10.0
 	_play_audio(battle_music)
 
 func _play_audio(audio: AudioStream) -> void:

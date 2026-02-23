@@ -18,6 +18,8 @@ var sprite_size: float = 192
 func _ready() -> void:
 	parent.OnTakeDamage.connect(_take_damage_visual)
 	parent.OnHeal.connect(_heal_visual)
+	parent.OnFocus.connect(_focus_visual)
+	parent.OnRest.connect(_rest_visual)
 	bob_offset = randf_range(1.0, 5.0)
 
 func setup_texture() -> void:
@@ -49,6 +51,16 @@ func _heal_visual(_health: int) -> void:
 	modulate = Color.GREEN
 	shake_intensity = max_shake_intensity / 5
 	await get_tree().create_timer(0.05).timeout
+	modulate = Color.WHITE
+
+func _rest_visual(_stamina: int) -> void:
+	modulate = Color.LIME_GREEN
+	await get_tree().create_timer(0.15).timeout
+	modulate = Color.WHITE
+
+func _focus_visual(_mana: int) -> void:
+	modulate = Color.BLUE
+	await get_tree().create_timer(0.15).timeout
 	modulate = Color.WHITE
 
 func _get_random_offset() -> Vector2:

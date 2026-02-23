@@ -9,7 +9,7 @@ signal OnDefeat
 @onready var player_buttons: Control = $UI/PlayerButtons
 @onready var description_label: RichTextLabel = $UI/Description/Label
 @onready var turn_count_label: Label = $UI/TurnCountLabel
-@onready var end_screen: Panel = $UI/EndScreen
+@onready var end_screen: TextureRect = $UI/EndScreen
 
 var turn_count: int = 0
 var controller: Character

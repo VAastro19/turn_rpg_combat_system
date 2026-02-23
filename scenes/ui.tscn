@@ -4,14 +4,20 @@
 [ext_resource type="Script" uid="uid://eoepblsconqg" path="res://scripts/description_label.gd" id="2_wm3ai"]
 [ext_resource type="Script" uid="uid://cco4xe86ue268" path="res://scripts/player_buttons.gd" id="2_x4jx1"]
 [ext_resource type="Script" uid="uid://d0hljcegjndgn" path="res://scripts/special_buttons.gd" id="3_yev5y"]
+[ext_resource type="Script" uid="uid://b42ukw8tlqk4c" path="res://scripts/button_sfx.gd" id="4_7dvkv"]
 [ext_resource type="PackedScene" uid="uid://bwctbcsxclaw7" path="res://scenes/combat_action_button.tscn" id="4_cgfq5"]
 [ext_resource type="Script" uid="uid://cj7y6dm1fo4m1" path="res://scripts/turn_count_label.gd" id="6_8dubc"]
 [ext_resource type="Script" uid="uid://crkrtpl1g0ldh" path="res://scripts/flee_popup.gd" id="7_cgfq5"]
 [ext_resource type="Script" uid="uid://bgo4guvlvtiee" path="res://scripts/end_screen.gd" id="7_ktti3"]
 [ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="7_p7vwb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
-bg_color = Color(0.21816888, 0.10165576, 3.6098065e-08, 1)
+[sub_resource type="Gradient" id="Gradient_cgfq5"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.57697755, 1)
+colors = PackedColorArray(0.47058824, 0.23529412, 0, 1, 0.23529412, 0.11764706, 0, 1, 0.078431375, 0.039215688, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7dvkv"]
+gradient = SubResource("Gradient_cgfq5")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt7q6"]
 bg_color = Color(0.087565444, 0.08756546, 0.087565444, 1)
@@ -29,9 +35,6 @@ font_size = 20
 outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.85882354)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dubc"]
-bg_color = Color(0.19215687, 0.105882354, 0.039215688, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_p7vwb"]
 font_size = 40
 font_color = Color(1, 1, 0.54901963, 1)
@@ -44,29 +47,35 @@ font_size = 22
 [node name="UI" type="CanvasLayer" unique_id=1376955447]
 layer = -1
 
-[node name="Background" type="Panel" parent="." unique_id=1066489344]
+[node name="Background" type="TextureRect" parent="." unique_id=1234969346]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1152.0
+offset_top = 2.203054e-05
+offset_right = 647.9999
+offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_xlq6p")
+rotation = 1.5707964
+texture = SubResource("GradientTexture1D_7dvkv")
 
 [node name="MiddleLine" type="Panel" parent="Background" unique_id=67409442]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_right = 2.0
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_right = 0.00012207031
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nt7q6")
 
 [node name="Frame" type="NinePatchRect" parent="Background" unique_id=303754039]
 layout_mode = 0
-offset_right = 576.0
-offset_bottom = 324.0
+offset_right = 323.9999
+offset_bottom = 576.0
 scale = Vector2(2, 2)
 texture = ExtResource("1_nt7q6")
 region_rect = Rect2(0, 0, 128, 128)
@@ -177,6 +186,9 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/FleeButton" unique_id=1197751559]
+script = ExtResource("4_7dvkv")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/MainButtons" unique_id=1783534943]
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -208,7 +220,7 @@ alignment = 1
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.43137255, 0.8745098, 0.8745098, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.29803923, 1, 1)
 theme_override_font_sizes/font_size = 18
 text = "Spells"
 
@@ -226,11 +238,14 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/SpellsButton" unique_id=97900879]
+script = ExtResource("4_7dvkv")
+
 [node name="AbilitiesButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=1904351791]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0.43137255, 0.8745098, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.6313726, 0.21568628, 0.5058824, 1)
 theme_override_font_sizes/font_size = 18
 text = "Abilities"
 
@@ -248,11 +263,14 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/AbilitiesButton" unique_id=776011663]
+script = ExtResource("4_7dvkv")
+
 [node name="ItemsButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=1036772499]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.43137255, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.5686275, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "Items"
 
@@ -269,6 +287,9 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/ItemsButton" unique_id=627677003]
+script = ExtResource("4_7dvkv")
 
 [node name="SpellsButtons" type="FlowContainer" parent="PlayerButtons" unique_id=1337411407]
 visible = false
@@ -303,6 +324,9 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/SpellsButtons/BackButton" unique_id=1418133938]
+script = ExtResource("4_7dvkv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/SpellsButtons" unique_id=841205950]
 layout_mode = 2
@@ -377,6 +401,9 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/AbilitiesButtons/BackButton" unique_id=769420523]
+script = ExtResource("4_7dvkv")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/AbilitiesButtons" unique_id=112599872]
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -448,6 +475,9 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/ItemsButtons/BackButton" unique_id=687292662]
+script = ExtResource("4_7dvkv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/ItemsButtons" unique_id=1031269398]
 layout_mode = 2
@@ -559,6 +589,7 @@ alignment = 1
 [node name="YesButton" type="Button" parent="FleePopup/HBoxContainer" unique_id=1933058681]
 custom_minimum_size = Vector2(90, 30)
 layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
 text = "Yes"
 
 [node name="ButtonFrame" type="NinePatchRect" parent="FleePopup/HBoxContainer/YesButton" unique_id=1117842812]
@@ -575,9 +606,13 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="FleePopup/HBoxContainer/YesButton" unique_id=364861571]
+script = ExtResource("4_7dvkv")
+
 [node name="NoButton" type="Button" parent="FleePopup/HBoxContainer" unique_id=1737506925]
 custom_minimum_size = Vector2(90, 30)
 layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
 text = "No"
 
 [node name="ButtonFrame" type="NinePatchRect" parent="FleePopup/HBoxContainer/NoButton" unique_id=18598254]
@@ -594,20 +629,34 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="EndScreen" type="Panel" parent="." unique_id=298450436]
-z_index = 5
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="FleePopup/HBoxContainer/NoButton" unique_id=1207776603]
+script = ExtResource("4_7dvkv")
+
+[node name="EndScreen" type="TextureRect" parent="." unique_id=761965085]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1152.0
+offset_top = 2.203054e-05
+offset_right = 647.9999
+offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8dubc")
+rotation = 1.5707964
+texture = SubResource("GradientTexture1D_7dvkv")
 script = ExtResource("7_ktti3")
 
 [node name="Frame" type="NinePatchRect" parent="EndScreen" unique_id=323891054]
-layout_mode = 0
-offset_right = 576.0
-offset_bottom = 324.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.1035156e-05
+offset_right = -324.0
+offset_bottom = -576.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(2, 2)
 texture = ExtResource("1_nt7q6")
 region_rect = Rect2(0, 0, 128, 128)
@@ -623,12 +672,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -267.5
-offset_top = -213.0
-offset_right = 269.5
-offset_bottom = -143.0
+offset_left = -212.99992
+offset_top = 267.5
+offset_right = 324.00006
+offset_bottom = 337.5
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5707964
 text = "You have conquered your foe!"
 label_settings = SubResource("LabelSettings_p7vwb")
 horizontal_alignment = 1
@@ -641,12 +691,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -151.0
-offset_top = -147.0
-offset_right = 151.0
-offset_bottom = -57.0
+offset_left = -146.99992
+offset_top = 151.0
+offset_right = 155.00006
+offset_bottom = 241.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5707964
 bbcode_enabled = true
 text = "[font_size=20][i],,With great power comes great responsibility.\"[/i]"
 horizontal_alignment = 1
@@ -660,12 +711,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -55.0
-offset_right = 50.0
-offset_bottom = -15.0
+offset_left = -54.99994
+offset_top = 50.0
+offset_right = 45.00006
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5707964
 text = "Continue"
 
 [node name="ButtonFrame" type="NinePatchRect" parent="EndScreen/ContinueButton" unique_id=1626902926]
@@ -682,6 +734,9 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="EndScreen/ContinueButton" unique_id=782671580]
+script = ExtResource("4_7dvkv")
+
 [node name="GainedLabel" type="Label" parent="EndScreen" unique_id=1549247624]
 layout_mode = 1
 anchors_preset = 8
@@ -689,12 +744,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -69.0
-offset_top = 15.0
-offset_right = 69.0
-offset_bottom = 38.0
+offset_left = 13.000061
+offset_top = 84.5
+offset_right = 182.00006
+offset_bottom = 111.5
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5707964
 text = "You have gained:"
 label_settings = SubResource("LabelSettings_ktti3")
 horizontal_alignment = 1
@@ -707,12 +763,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -462.0
-offset_top = 47.0
-offset_right = 462.0
-offset_bottom = 88.0
+offset_left = 47.00009
+offset_top = 462.0
+offset_right = 971.00006
+offset_bottom = 503.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5707964
 bbcode_enabled = true
 text = "[font_size=18]+20 EXP,	+15 GOLD"
 horizontal_alignment = 1
@@ -725,12 +782,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -85.0
-offset_top = 108.0
-offset_right = -21.0
-offset_bottom = 172.0
+offset_left = 108.00006
+offset_top = 85.0
+offset_right = 172.00006
+offset_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -1.5707964
 scale = Vector2(3, 3)
 texture = ExtResource("7_p7vwb")
 

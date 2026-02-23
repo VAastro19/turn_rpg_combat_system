@@ -2,8 +2,8 @@
 extends AudioStreamPlayer
 
 var heal_sfx: AudioStream = preload("res://assets/audio/sfx/heal.mp3")
-var take_damage_sfx_1: AudioStream = preload("res://assets/audio/sfx/hurt1.wav")
-var take_damage_sfx_2: AudioStream = preload("res://assets/audio/sfx/hurt2.wav")
+var take_damage_sfx_1: AudioStream = preload("res://assets/audio/sfx/hurt1.mp3")
+var take_damage_sfx_2: AudioStream = preload("res://assets/audio/sfx/hurt2.mp3")
 var rest_sfx: AudioStream = preload("res://assets/audio/sfx/rest.wav")
 var mana_sfx: AudioStream = preload("res://assets/audio/sfx/focus_energy.mp3")
 var unsuccessful_sfx: AudioStream = preload("res://assets/audio/sfx/unsuccessful.mp3")

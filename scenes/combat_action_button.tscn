@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cskooek54fj62" path="res://scripts/combat_action_button.gd" id="1_4b1ag"]
 [ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="2_lypup"]
+[ext_resource type="Script" uid="uid://b42ukw8tlqk4c" path="res://scripts/button_sfx.gd" id="3_ygpmq"]
 
 [node name="AttackButton" type="Button" unique_id=2106514306]
 custom_minimum_size = Vector2(100, 40)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
 theme_override_font_sizes/font_size = 18
 text = "Attack"
 script = ExtResource("1_4b1ag")
@@ -23,3 +24,6 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="." unique_id=1156888115]
+script = ExtResource("3_ygpmq")
