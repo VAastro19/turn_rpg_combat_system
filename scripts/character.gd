@@ -6,6 +6,8 @@ signal OnTakeDamage(health: int)
 signal OnHeal(health: int)
 signal OnRest(stamina: int)
 signal OnFocus(mana: int)
+signal OnNotEnough(attribute: Enums.Attribute)
+signal OnAlreadyFull(attribute: Enums.Attribute)
 
 @export var character_name: String
 @export var is_player: bool = false
@@ -93,29 +95,30 @@ func cast_combat_action(action: CombatAction, opponent: Character) -> int:
 	if action.heal_amount > 0:
 		if health == max_health:
 			print("Already at full health!")
+			OnAlreadyFull.emit(Enums.Attribute.HEALTH)
 			return 2
 		heal(action.heal_amount)
 
 	if action.stamina_regain > 0:
 		if stamina == max_stamina:
 			print("Already at full stamina!")
+			OnAlreadyFull.emit(Enums.Attribute.STAMINA)
 			return 2
 		regain_stamina(action.stamina_regain)
 
 	if action.mana_regain > 0:
 		if mana == max_mana:
 			print("Already at full mana!")
+			OnAlreadyFull.emit(Enums.Attribute.MANA)
 			return 2
 		regain_mana(action.mana_regain)
 
-	if action.damage > 0:
-		opponent.take_damage(action.damage)
-	
 	if action.stamina_cost > 0:
 		if action.stamina_cost <= stamina:
 			use_stamina(action.stamina_cost)
 		else:
 			print("Not enough stamina!")
+			OnNotEnough.emit(Enums.Attribute.STAMINA)
 			return 3
 	
 	if action.mana_cost > 0:
@@ -123,6 +126,10 @@ func cast_combat_action(action: CombatAction, opponent: Character) -> int:
 			use_mana(action.mana_cost)
 		else:
 			print("Not enough mana!")
+			OnNotEnough.emit(Enums.Attribute.MANA)
 			return 3
+	
+	if action.damage > 0:
+		opponent.take_damage(action.damage)
 
 	return 0

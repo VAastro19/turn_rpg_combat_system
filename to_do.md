@@ -1,1 +1,2 @@
-1. advanced combat actions
+advanced combat actions
+create connections for modular system

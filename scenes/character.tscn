@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="6_2cgup"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rkhd4"]
-bg_color = Color(0.04873965, 0.04873965, 0.048739605, 1)
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrhn5"]
 bg_color = Color(0.6666667, 0, 0, 1)
@@ -17,13 +17,13 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dp8ca"]
 font_size = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my7n2"]
-bg_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp8ca"]
 bg_color = Color(0, 0.52206355, 0, 1)
@@ -31,13 +31,13 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0lw5n"]
 font_size = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lw5n"]
-bg_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cgup"]
 bg_color = Color(0, 0.13871163, 0.7502209, 1)
@@ -45,7 +45,7 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_a5ia6"]
 font_size = 14
@@ -96,6 +96,7 @@ value = 70.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("3_dp8ca")
+bar_type = 1
 
 [node name="BarLabel" type="Label" parent="StaminaBar" unique_id=1480438639]
 layout_mode = 1
@@ -127,6 +128,7 @@ value = 30.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("3_dp8ca")
+bar_type = 2
 
 [node name="BarLabel" type="Label" parent="ManaBar" unique_id=305029905]
 layout_mode = 1
