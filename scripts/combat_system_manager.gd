@@ -99,12 +99,12 @@ func ai_decide_combat_action_to_cast() -> CombatAction:
 		if action.mana_cost > ai.mana:
 			weight = 0
 			
-		if player.health <= action.damage:
+		if player.health <= action.min_dmg:
 			weight *= 10
 		if action.heal_amount > 0:
 			weight *= 1 + (1 - ai_health_percent)
 			
-		if action.stamina_regain > 0:
+		if action.stamina_cost < 0:
 			if ai_stamina_percent <= 0.2:
 				weight *= 5
 			elif ai_stamina_percent >= 0.8:
@@ -112,7 +112,7 @@ func ai_decide_combat_action_to_cast() -> CombatAction:
 			else:
 				weight *= 1 + (1 - ai_stamina_percent)
 				
-		if action.mana_regain > 0:
+		if action.mana_cost < 0:
 			if ai_mana_percent <= 0.2:
 				weight *= 3
 			elif ai_stamina_percent >= 0.8:

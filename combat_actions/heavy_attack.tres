@@ -5,9 +5,11 @@
 [resource]
 script = ExtResource("1_wjxfs")
 display_name = "Heavy Hit"
-description = "Deals 15 damage. Costs 10 stamina."
+description = "Deals 12-15 damage. Costs 10 stamina."
 message = "performs heavy attack and deals 15 damage!"
-damage = 15
-stamina_cost = 10
 base_weight = 150.0
+melee_subtype = 2
+min_dmg = 12
+max_dmg = 15
+stamina_cost = 10
 metadata/_custom_type_script = "uid://s5chh1juepma"

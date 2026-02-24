@@ -24,6 +24,7 @@ signal OnAlreadyFull(attribute: Enums.Attribute)
 @export var display_texture: Texture2D
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var stamina_bar: ProgressBar = $StaminaBar
 @onready var mana_bar: ProgressBar = $ManaBar
@@ -87,49 +88,8 @@ func regain_mana(amount: int) -> void:
 
 ## Perfroms combat action and returns exit code to the game manager.
 # On success returns 0, on action == null error returns 1, 
-# On not_enough_resource error returns 3, on already_at_max error returns 2
+# On incorrect amount of attribute error returns 2
 func cast_combat_action(action: CombatAction, opponent: Character) -> int:
 	if action == null:
 		return 1
-
-	if action.heal_amount > 0:
-		if health == max_health:
-			print("Already at full health!")
-			OnAlreadyFull.emit(Enums.Attribute.HEALTH)
-			return 2
-		heal(action.heal_amount)
-
-	if action.stamina_regain > 0:
-		if stamina == max_stamina:
-			print("Already at full stamina!")
-			OnAlreadyFull.emit(Enums.Attribute.STAMINA)
-			return 2
-		regain_stamina(action.stamina_regain)
-
-	if action.mana_regain > 0:
-		if mana == max_mana:
-			print("Already at full mana!")
-			OnAlreadyFull.emit(Enums.Attribute.MANA)
-			return 2
-		regain_mana(action.mana_regain)
-
-	if action.stamina_cost > 0:
-		if action.stamina_cost <= stamina:
-			use_stamina(action.stamina_cost)
-		else:
-			print("Not enough stamina!")
-			OnNotEnough.emit(Enums.Attribute.STAMINA)
-			return 3
-	
-	if action.mana_cost > 0:
-		if action.mana_cost <= mana:
-			use_mana(action.mana_cost)
-		else:
-			print("Not enough mana!")
-			OnNotEnough.emit(Enums.Attribute.MANA)
-			return 3
-	
-	if action.damage > 0:
-		opponent.take_damage(action.damage)
-
-	return 0
+	return ActionHandler.execute_action(action, self, opponent)

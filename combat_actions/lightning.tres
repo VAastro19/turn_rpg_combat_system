@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://ctb57tlq844dq"]
+
+[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="1_3tedj"]
+
+[resource]
+script = ExtResource("1_3tedj")
+display_name = "Lightning"
+description = "Deals 18-24 damage. Costs 15 mana."
+message = "casts Lightning and deals 24 damage!"
+type = 1
+spell_subtype = 3
+min_dmg = 18
+max_dmg = 24
+mana_cost = 15
+metadata/_custom_type_script = "uid://s5chh1juepma"

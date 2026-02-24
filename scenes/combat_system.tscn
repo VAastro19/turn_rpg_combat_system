@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bv4bklksued3o" path="res://combat_actions/wait.tres" id="7_x58r8"]
 [ext_resource type="Resource" uid="uid://c0k5yxstgy5pt" path="res://combat_actions/heal.tres" id="8_1wsbt"]
 [ext_resource type="Resource" uid="uid://cvck6df2oeabm" path="res://combat_actions/focus_energy.tres" id="9_0bc51"]
+[ext_resource type="Resource" uid="uid://ctb57tlq844dq" path="res://combat_actions/lightning.tres" id="10_1jje8"]
 [ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="10_qo6uo"]
 [ext_resource type="Texture2D" uid="uid://bfpd5h0t1hhph" path="res://assets/sprites/pikeman.png" id="11_7q6tm"]
 [ext_resource type="Script" uid="uid://c7pdi1maytg32" path="res://scripts/combat_system_music.gd" id="13_1jje8"]
@@ -29,7 +30,7 @@ max_health = 120
 health = 120
 stamina = 40
 max_mana = 30
-combat_actions = Array[ExtResource("4_5jlpm")]([ExtResource("5_stj80"), ExtResource("6_75guj"), ExtResource("7_x58r8"), ExtResource("8_1wsbt"), ExtResource("9_0bc51")])
+combat_actions = Array[ExtResource("4_5jlpm")]([ExtResource("5_stj80"), ExtResource("6_75guj"), ExtResource("7_x58r8"), ExtResource("8_1wsbt"), ExtResource("9_0bc51"), ExtResource("10_1jje8")])
 display_texture = ExtResource("10_qo6uo")
 
 [node name="AICharacter" parent="." unique_id=1502949294 instance=ExtResource("3_2kwlm")]

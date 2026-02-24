@@ -5,8 +5,10 @@
 [resource]
 script = ExtResource("1_ik1ca")
 display_name = "Attack"
-description = "Deals 8 damage. Costs 5 stamina."
+description = "Deals 6-8 damage. Costs 5 stamina."
 message = "attacks and deals 8 damage!"
-damage = 8
+melee_subtype = 1
+min_dmg = 6
+max_dmg = 8
 stamina_cost = 5
 metadata/_custom_type_script = "uid://s5chh1juepma"
