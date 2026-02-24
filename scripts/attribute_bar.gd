@@ -34,8 +34,6 @@ func _on_not_enough_vfx(attribute: Enums.Attribute) -> void:
 			local_stylebox_bg.bg_color = Color(0.0, 0.0, 0.0)
 			await get_tree().create_timer(0.1).timeout
 
-
-
 func update(attribute: int) -> void:
 	value = attribute
 	bar_label.text = str(int(value)) + " / " + str(int(max_value))

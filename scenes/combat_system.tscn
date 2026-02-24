@@ -25,24 +25,28 @@ position = Vector2(576, 324)
 [node name="PlayerCharacter" parent="." unique_id=483189046 instance=ExtResource("3_2kwlm")]
 position = Vector2(129, 129)
 character_name = "Knight"
+display_texture = ExtResource("10_qo6uo")
 is_player = true
 max_health = 120
 health = 120
 stamina = 40
 max_mana = 30
+attack = 9
+defense = 4
+spell_power = 3
+magic_resistance = 3
 combat_actions = Array[ExtResource("4_5jlpm")]([ExtResource("5_stj80"), ExtResource("6_75guj"), ExtResource("7_x58r8"), ExtResource("8_1wsbt"), ExtResource("9_0bc51"), ExtResource("10_1jje8")])
-display_texture = ExtResource("10_qo6uo")
 
 [node name="AICharacter" parent="." unique_id=1502949294 instance=ExtResource("3_2kwlm")]
 position = Vector2(705, 129)
 character_name = "Pikeman"
+display_texture = ExtResource("11_7q6tm")
 facing_left = true
 health = 100
 max_stamina = 30
 max_mana = 20
 mana = 20
 combat_actions = Array[ExtResource("4_5jlpm")]([ExtResource("5_stj80"), ExtResource("6_75guj"), ExtResource("7_x58r8"), ExtResource("8_1wsbt"), ExtResource("9_0bc51")])
-display_texture = ExtResource("11_7q6tm")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1474478029]
 autoplay = true

@@ -3,16 +3,25 @@ extends Node2D
 class_name Character
 
 signal OnTakeDamage(health: int)
-signal OnHeal(health: int)
-signal OnRest(stamina: int)
-signal OnFocus(mana: int)
+@warning_ignore("unused_signal")
 signal OnNotEnough(attribute: Enums.Attribute)
+@warning_ignore("unused_signal")
 signal OnAlreadyFull(attribute: Enums.Attribute)
 
+@warning_ignore("unused_signal")
+signal OnRest(stamina: int)
+@warning_ignore("unused_signal")
+signal OnHeal(health: int)
+@warning_ignore("unused_signal")
+signal OnFocus(mana: int)
+
+@export_group("Basic Info")
 @export var character_name: String
+@export var display_texture: Texture2D
 @export var is_player: bool = false
 @export var facing_left: bool = false
 
+@export_group("Attributes")
 @export var max_health: int = 100
 @export var health: int = 80
 @export var max_stamina: int = 40
@@ -20,8 +29,15 @@ signal OnAlreadyFull(attribute: Enums.Attribute)
 @export var max_mana: int = 40
 @export var mana: int = 30
 
+@export_group("Skills")
+@export var attack: int = 5
+@export var defense: int = 3
+@export var spell_power: int = 1
+@export var magic_resistance: int = 2
+
+@export_group("Combat Actions")
 @export var combat_actions: Array[CombatAction]
-@export var display_texture: Texture2D
+
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
@@ -52,8 +68,8 @@ func _ready() -> void:
 	mana_bar.max_value = max_mana
 	mana_bar.update(mana)
 
-func take_damage(amount: int) -> void:
-	health -= amount
+func take_damage(amount: float) -> void:
+	health -= int(roundf(amount))
 	health = clamp(health, 0, max_health)
 	health_bar.update(health)
 	OnTakeDamage.emit(health)
@@ -62,7 +78,6 @@ func heal(amount: int) -> void:
 	health += amount
 	health = clamp(health, 0, max_health)
 	health_bar.update(health)
-	OnHeal.emit(health)
 
 func use_stamina(amount: int) -> void:
 	stamina -= amount
@@ -78,13 +93,11 @@ func regain_stamina(amount: int) -> void:
 	stamina += amount
 	stamina = clamp(stamina, 0, max_stamina)
 	stamina_bar.update(stamina)
-	OnRest.emit(stamina)
 
 func regain_mana(amount: int) -> void:
 	mana += amount
 	mana = clamp(mana, 0, max_mana)
 	mana_bar.update(mana)
-	OnFocus.emit(mana)
 
 ## Perfroms combat action and returns exit code to the game manager.
 # On success returns 0, on action == null error returns 1, 

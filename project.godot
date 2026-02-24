@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://cv1i66tssd8gd"
 
 Enums="*uid://mvsx3nkcf3jm"
 ActionHandler="*uid://bks4oh4gxb6ou"
+Coefficients="*uid://guxy71dymy28"
 
 [gui]
 

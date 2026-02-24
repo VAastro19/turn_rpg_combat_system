@@ -20,6 +20,7 @@ func _ready() -> void:
 	parent.OnHeal.connect(_heal_visual)
 	parent.OnFocus.connect(_focus_visual)
 	parent.OnRest.connect(_rest_visual)
+	
 	bob_offset = randf_range(1.0, 5.0)
 
 func setup_texture() -> void:
