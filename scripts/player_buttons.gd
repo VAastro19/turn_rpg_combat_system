@@ -85,6 +85,10 @@ func _button_pressed(button: CombatActionButton) -> void:
 
 func _button_entered(button: CombatActionButton) -> void:
 	description_label.text = "[b]" + button.combat_action.display_name + "[/b]\n" + button.combat_action.description
+	if button.combat_action.type == Enums.CombatActionType.ITEM and button.combat_action.item_count != 0:
+		description_label.text += "[font_size=28][color=green]\n\n" + str(button.combat_action.item_count) + " left"
+	elif button.combat_action.type == Enums.CombatActionType.ITEM and button.combat_action.item_count == 0:
+		description_label.text += "[font_size=28][color=red]\n\nNone left"
 
 func _button_exited(_button: CombatActionButton) -> void:
 	description_label.text = description_label.last_message

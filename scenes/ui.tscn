@@ -145,9 +145,9 @@ patch_margin_bottom = 8
 layout_mode = 3
 anchors_preset = 0
 offset_left = 19.0
-offset_top = 492.0
+offset_top = 513.0
 offset_right = 449.0
-offset_bottom = 582.0
+offset_bottom = 603.0
 script = ExtResource("2_x4jx1")
 
 [node name="MainButtons" type="FlowContainer" parent="PlayerButtons" unique_id=482404210]

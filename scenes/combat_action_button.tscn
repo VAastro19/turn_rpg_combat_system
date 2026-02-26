@@ -9,6 +9,7 @@ custom_minimum_size = Vector2(100, 40)
 theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
 theme_override_font_sizes/font_size = 18
 text = "Attack"
+autowrap_mode = 3
 script = ExtResource("1_4b1ag")
 
 [node name="ButtonFrame" type="NinePatchRect" parent="." unique_id=1761178972]

@@ -1,10 +1,6 @@
 # action_handler.gd
 extends Node
 
-
-
-
-
 func execute_action(action: CombatAction, caster: Character, opponent: Character) -> int:
 
 	if action.type == Enums.CombatActionType.MAIN:
@@ -16,9 +12,9 @@ func execute_action(action: CombatAction, caster: Character, opponent: Character
 			Enums.CombatActionMelee.WAIT:
 				return _wait(action, caster)
 			Enums.CombatActionMelee.NONE:
-				pass
+				return 1
 			_:
-				pass
+				return 3
 
 	elif action.type == Enums.CombatActionType.SPELL:
 		match action.spell_subtype:
@@ -29,9 +25,9 @@ func execute_action(action: CombatAction, caster: Character, opponent: Character
 			Enums.CombatActionSpells.LIGHTNING:
 				return _lightning(action, caster, opponent)
 			Enums.CombatActionSpells.NONE:
-				pass
+				return 1
 			_:
-				pass
+				return 3
 
 	elif action.type == Enums.CombatActionType.ABILITY:
 		match action.ability_subtype:
@@ -40,22 +36,22 @@ func execute_action(action: CombatAction, caster: Character, opponent: Character
 			Enums.CombatActionAbilities.GUARD:
 				pass
 			Enums.CombatActionAbilities.NONE:
-				pass
+				return 1
 			_:
-				pass
+				return 3
 
 	elif action.type == Enums.CombatActionType.ITEM:
 		match action.item_subtype:
 			Enums.CombatActionItems.HEALTH_POTION:
-				pass
+				return _health_potion(action, caster)
 			Enums.CombatActionItems.STAMINA_POTION:
-				pass
+				return _stamina_potion(action, caster)
 			Enums.CombatActionItems.MANA_POTION:
-				pass
+				return _mana_potion(action, caster)
 			Enums.CombatActionItems.NONE:
-				pass
+				return 1
 			_:
-				pass
+				return 3
 
 	return 0
 
@@ -63,7 +59,7 @@ func execute_action(action: CombatAction, caster: Character, opponent: Character
 
 func _attack(action: CombatAction, caster: Character, opponent: Character) -> int:
 	if _check_stamina(action, caster):
-		var damage: float = _calculate_damage(action, caster, opponent)
+		var damage: int = _calculate_damage(action, caster, opponent)
 		caster.use_stamina(action.stamina_cost)
 		opponent.take_damage(damage)
 		return 0
@@ -72,7 +68,7 @@ func _attack(action: CombatAction, caster: Character, opponent: Character) -> in
 
 func _heavy_attack(action: CombatAction, caster: Character, opponent: Character) -> int:
 	if _check_stamina(action, caster):
-		var damage: float = _calculate_damage(action, caster, opponent)
+		var damage: int = _calculate_damage(action, caster, opponent)
 		caster.use_stamina(action.stamina_cost)
 		opponent.take_damage(damage)
 		return 0
@@ -90,7 +86,7 @@ func _wait(action: CombatAction, caster: Character) -> int:
 ### --- SPELLS --- ###
 
 func _heal(action: CombatAction, caster: Character) -> int:
-	if _check_mana(action, caster):
+	if _check_mana(action, caster) and _check_health(caster):
 		caster.use_mana(action.mana_cost)
 		caster.heal(action.heal_amount)
 		caster.OnHeal.emit(caster.health)
@@ -100,9 +96,10 @@ func _heal(action: CombatAction, caster: Character) -> int:
 
 func _lightning(action: CombatAction, caster: Character, opponent: Character) -> int:
 	if _check_mana(action, caster):
-		var damage: float = _calculate_damage(action, caster, opponent)
+		var damage: int = _calculate_damage(action, caster, opponent)
 		caster.use_mana(action.mana_cost)
 		opponent.take_damage(damage)
+		opponent.OnLightning.emit()
 		return 0
 	else:
 		return 2
@@ -119,8 +116,57 @@ func _focus_energy(action: CombatAction, caster: Character) -> int:
 
 ### --- ITEMS --- ###
 
+func _health_potion(action: CombatAction, caster: Character) -> int:
+	if _check_count(action, caster):
+		if _check_health(caster):
+			caster.heal(action.heal_amount)
+			action.item_count -= 1
+			caster.OnHealthPotion.emit(caster.health)
+			return 0
+		else:
+			return 2
+	else:
+		print("No health potions left!")
+		caster.OnNoneLeft.emit(Enums.CombatActionItems.HEALTH_POTION)
+		return 2
+
+func _stamina_potion(action: CombatAction, caster: Character) -> int:
+	if _check_count(action, caster):
+		if _check_stamina(action, caster):
+			caster.regain_stamina(-action.stamina_cost)
+			action.item_count -= 1
+			caster.OnStaminaPotion.emit(caster.stamina)
+			return 0
+		else:
+			return 2
+	else:
+		print("No stamina potions left!")
+		caster.OnNoneLeft.emit(Enums.CombatActionItems.STAMINA_POTION)
+		return 2
+
+func _mana_potion(action: CombatAction, caster: Character) -> int:
+	if _check_count(action, caster):
+		if _check_mana(action, caster):
+			caster.regain_mana(-action.mana_cost)
+			action.item_count -= 1
+			caster.OnManaPotion.emit(caster.mana)
+			return 0
+		else:
+			return 2
+	else:
+		print("No mana potions left!")
+		caster.OnNoneLeft.emit(Enums.CombatActionItems.MANA_POTION)
+		return 2
 
 ### --- UTILITY --- ###
+
+func _check_health(caster: Character) -> bool:
+	if caster.health >= caster.max_health:
+		print("Already at full health!")
+		caster.OnAlreadyFull.emit(Enums.Attribute.HEALTH)
+		return false
+
+	return true
 
 func _check_stamina(action:CombatAction, caster: Character) -> bool:
 	if action.stamina_cost < 0 and caster.stamina >= caster.max_stamina:
@@ -148,7 +194,12 @@ func _check_mana(action:CombatAction, caster: Character) -> bool:
 
 	return true
 
-func _calculate_damage(action: CombatAction, caster: Character, opponent: Character) -> float:
+func _check_count(action: CombatAction, _caster: Character) -> bool:
+	if action.item_count > 0:
+		return true
+	return false
+
+func _calculate_damage(action: CombatAction, caster: Character, opponent: Character) -> int:
 	var base_damage: int = randi_range(action.min_dmg, action.max_dmg)
 	var advantage: int
 	var coefficient: float
@@ -171,4 +222,4 @@ func _calculate_damage(action: CombatAction, caster: Character, opponent: Charac
 			coefficient = 0
 
 	var damage_dealt: float = base_damage * (1 + advantage * coefficient)
-	return damage_dealt
+	return int(roundf(damage_dealt))

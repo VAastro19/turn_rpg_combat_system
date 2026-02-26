@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_3tedj")
 display_name = "Lightning"
-description = "Deals 18-24 damage. Costs 15 mana."
-message = "casts Lightning and deals 24 damage!"
+description = "Deals 18-24 base damage. Costs 15 mana."
+message = "casts Lightning and deals "
 type = 1
 spell_subtype = 3
 min_dmg = 18

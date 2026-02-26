@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_wjxfs")
 display_name = "Heavy Hit"
-description = "Deals 12-15 damage. Costs 10 stamina."
-message = "performs heavy attack and deals 15 damage!"
+description = "Deals 12-15 base damage. Costs 10 stamina."
+message = "performs heavy attack and deals "
 base_weight = 150.0
 melee_subtype = 2
 min_dmg = 12

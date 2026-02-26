@@ -12,7 +12,10 @@
 [ext_resource type="Resource" uid="uid://ctb57tlq844dq" path="res://combat_actions/lightning.tres" id="10_1jje8"]
 [ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="10_qo6uo"]
 [ext_resource type="Texture2D" uid="uid://bfpd5h0t1hhph" path="res://assets/sprites/pikeman.png" id="11_7q6tm"]
+[ext_resource type="Resource" uid="uid://c7ad0l8gdo6j7" path="res://combat_actions/health_potion.tres" id="12_stj80"]
 [ext_resource type="Script" uid="uid://c7pdi1maytg32" path="res://scripts/combat_system_music.gd" id="13_1jje8"]
+[ext_resource type="Resource" uid="uid://dyvym14puypt4" path="res://combat_actions/stamina_potion.tres" id="13_75guj"]
+[ext_resource type="Resource" uid="uid://cek1kq2v2rr0f" path="res://combat_actions/mana_potion.tres" id="14_x58r8"]
 
 [node name="CombatSystem" type="Node2D" unique_id=807530277]
 script = ExtResource("1_msud5")
@@ -35,7 +38,7 @@ attack = 9
 defense = 4
 spell_power = 3
 magic_resistance = 3
-combat_actions = Array[ExtResource("4_5jlpm")]([ExtResource("5_stj80"), ExtResource("6_75guj"), ExtResource("7_x58r8"), ExtResource("8_1wsbt"), ExtResource("9_0bc51"), ExtResource("10_1jje8")])
+combat_actions = Array[ExtResource("4_5jlpm")]([ExtResource("5_stj80"), ExtResource("6_75guj"), ExtResource("7_x58r8"), ExtResource("8_1wsbt"), ExtResource("9_0bc51"), ExtResource("10_1jje8"), ExtResource("12_stj80"), ExtResource("13_75guj"), ExtResource("14_x58r8")])
 
 [node name="AICharacter" parent="." unique_id=1502949294 instance=ExtResource("3_2kwlm")]
 position = Vector2(705, 129)

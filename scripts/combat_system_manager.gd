@@ -12,6 +12,7 @@ signal OnDefeat
 @onready var end_screen: TextureRect = $UI/EndScreen
 
 var turn_count: int = 0
+var last_damage: int = 0
 var controller: Character
 var can_cast: bool = false
 var game_over: bool = false
@@ -22,17 +23,21 @@ func _ready() -> void:
 	player.OnTakeDamage.connect(_on_player_damaged)
 	ai.OnTakeDamage.connect(_on_ai_damaged)
 
-func _on_player_damaged(health: int) -> void:
-	if health <= 0:
+func _on_player_damaged(damage: int) -> void:
+	if player.health <= 0:
 		game_over = true
 		show_end_screen("ai")
 		OnDefeat.emit()
+	else:
+		last_damage = damage
 
-func _on_ai_damaged(health: int) -> void:
-	if health <= 0:
+func _on_ai_damaged(damage: int) -> void:
+	if ai.health <= 0:
 		game_over = true
 		show_end_screen("player")
 		OnVictory.emit()
+	else:
+		last_damage = damage
 
 func show_end_screen(victor: String) -> void:
 	end_screen.set_result_label(victor)
@@ -52,16 +57,17 @@ func next_turn() -> void:
 		controller = ai
 
 	if not game_over:
+		last_damage = 0
 		if controller == player:
 			player_buttons.manage_combat_actions(player.combat_actions)
 		else:
-			var wait_time = randf_range(0.5, 1.5)
+			var wait_time = randf_range(1.0, 1.5)
 			await get_tree().create_timer(wait_time).timeout
 			
 			var action_to_cast = ai_decide_combat_action_to_cast()
 			ai.cast_combat_action(action_to_cast, player)
 			
-			description_label.update("Enemy " + action_to_cast.message)
+			description_label.update("Enemy " + action_to_cast.message, last_damage)
 			await get_tree().create_timer(0.5).timeout
 			next_turn()
 
@@ -76,7 +82,7 @@ func player_cast_combat_action(action: CombatAction) -> void:
 			return
 		can_cast = false
 		
-	description_label.update("Player " + action.message)
+	description_label.update("Player " + action.message, last_damage)
 	next_turn()
 
 func ai_decide_combat_action_to_cast() -> CombatAction:

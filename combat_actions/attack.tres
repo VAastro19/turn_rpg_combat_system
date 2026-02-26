@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_ik1ca")
 display_name = "Attack"
-description = "Deals 6-8 damage. Costs 5 stamina."
-message = "attacks and deals 8 damage!"
+description = "Deals 6-8 base damage. Costs 5 stamina."
+message = "attacks and deals "
 melee_subtype = 1
 min_dmg = 6
 max_dmg = 8

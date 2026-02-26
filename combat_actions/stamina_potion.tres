@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://dyvym14puypt4"]
+
+[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="1_dxnnx"]
+
+[resource]
+script = ExtResource("1_dxnnx")
+display_name = "Stamina Potion"
+description = "Regains 20 stamina points."
+message = "drank a stamina potion and regained 20 stamina!"
+base_weight = 50.0
+type = 3
+item_subtype = 2
+item_count = 1
+stamina_cost = -20
+metadata/_custom_type_script = "uid://s5chh1juepma"

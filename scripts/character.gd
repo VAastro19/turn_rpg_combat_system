@@ -2,11 +2,13 @@
 extends Node2D
 class_name Character
 
-signal OnTakeDamage(health: int)
+signal OnTakeDamage(damage: int)
 @warning_ignore("unused_signal")
 signal OnNotEnough(attribute: Enums.Attribute)
 @warning_ignore("unused_signal")
 signal OnAlreadyFull(attribute: Enums.Attribute)
+@warning_ignore("unused_signal")
+signal OnNoneLeft(item: Enums.CombatActionItems)
 
 @warning_ignore("unused_signal")
 signal OnRest(stamina: int)
@@ -14,6 +16,14 @@ signal OnRest(stamina: int)
 signal OnHeal(health: int)
 @warning_ignore("unused_signal")
 signal OnFocus(mana: int)
+@warning_ignore("unused_signal")
+signal OnLightning()
+@warning_ignore("unused_signal")
+signal OnHealthPotion(health: int)
+@warning_ignore("unused_signal")
+signal OnStaminaPotion(stamina: int)
+@warning_ignore("unused_signal")
+signal OnManaPotion(mana: int)
 
 @export_group("Basic Info")
 @export var character_name: String
@@ -68,11 +78,11 @@ func _ready() -> void:
 	mana_bar.max_value = max_mana
 	mana_bar.update(mana)
 
-func take_damage(amount: float) -> void:
-	health -= int(roundf(amount))
+func take_damage(amount: int) -> void:
+	health -= amount
 	health = clamp(health, 0, max_health)
 	health_bar.update(health)
-	OnTakeDamage.emit(health)
+	OnTakeDamage.emit(amount)
 
 func heal(amount: int) -> void:
 	health += amount

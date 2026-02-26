@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://c7ad0l8gdo6j7"]
+
+[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="1_jj1oq"]
+
+[resource]
+script = ExtResource("1_jj1oq")
+display_name = "Health Potion"
+description = "Regains 20 health."
+message = "drank a health potion and regained 20 health!"
+base_weight = 50.0
+type = 3
+item_subtype = 1
+item_count = 1
+heal_amount = 20
+metadata/_custom_type_script = "uid://s5chh1juepma"

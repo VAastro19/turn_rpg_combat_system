@@ -20,6 +20,7 @@ func _ready() -> void:
 	parent.OnHeal.connect(_heal_visual)
 	parent.OnFocus.connect(_focus_visual)
 	parent.OnRest.connect(_rest_visual)
+	parent.OnLightning.connect(_lightning_visual)
 	
 	bob_offset = randf_range(1.0, 5.0)
 
@@ -62,6 +63,13 @@ func _rest_visual(_stamina: int) -> void:
 func _focus_visual(_mana: int) -> void:
 	modulate = Color.BLUE
 	await get_tree().create_timer(0.15).timeout
+	modulate = Color.WHITE
+
+func _lightning_visual() -> void:
+	await get_tree().create_timer(0.10).timeout
+	modulate.v = 15 # flash white
+	shake_intensity = max_shake_intensity * 2
+	await get_tree().create_timer(0.30).timeout
 	modulate = Color.WHITE
 
 func _get_random_offset() -> Vector2:
