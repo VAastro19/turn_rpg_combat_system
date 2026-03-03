@@ -50,9 +50,6 @@ border_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_a5ia6"]
 font_size = 14
 
-[sub_resource type="LabelSettings" id="LabelSettings_lrhn5"]
-font_size = 30
-
 [node name="Character" type="Node2D" unique_id=483189046]
 script = ExtResource("1_lrhn5")
 
@@ -151,20 +148,24 @@ vertical_alignment = 1
 
 [node name="CharacterBackground" parent="." unique_id=406308773 instance=ExtResource("1_rkhd4")]
 z_index = -1
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 320.0
+offset_bottom = 320.0
 
 [node name="CharacterName" type="Panel" parent="." unique_id=892839553]
-offset_top = -43.0
+offset_top = -54.0
 offset_right = 320.0
-offset_bottom = -3.0
+offset_bottom = -4.0
 
-[node name="CharacterNameLabel" type="Label" parent="CharacterName" unique_id=831204339]
+[node name="CharacterNameLabel" type="RichTextLabel" parent="CharacterName" unique_id=55837621]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_lrhn5")
+bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 

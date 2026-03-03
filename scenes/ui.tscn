@@ -11,13 +11,15 @@
 [ext_resource type="Script" uid="uid://bgo4guvlvtiee" path="res://scripts/end_screen.gd" id="7_ktti3"]
 [ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="7_p7vwb"]
 
-[sub_resource type="Gradient" id="Gradient_cgfq5"]
-interpolation_color_space = 1
-offsets = PackedFloat32Array(0, 0.57697755, 1)
-colors = PackedColorArray(0.47058824, 0.23529412, 0, 1, 0.23529412, 0.11764706, 0, 1, 0.078431375, 0.039215688, 0, 1)
+[sub_resource type="Gradient" id="Gradient_7dvkv"]
+colors = PackedColorArray(0.078431375, 0.039215688, 0, 1, 0.47058824, 0.23529412, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7dvkv"]
-gradient = SubResource("Gradient_cgfq5")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vdcm2"]
+gradient = SubResource("Gradient_7dvkv")
+width = 128
+height = 128
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt7q6"]
 bg_color = Color(0.087565444, 0.08756546, 0.087565444, 1)
@@ -35,6 +37,16 @@ font_size = 20
 outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.85882354)
 
+[sub_resource type="Gradient" id="Gradient_vdcm2"]
+colors = PackedColorArray(0.078431375, 0.039215688, 0, 1, 0.47058824, 0.23529412, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6rmj2"]
+gradient = SubResource("Gradient_vdcm2")
+width = 128
+height = 128
+fill_from = Vector2(0.5115685, 1)
+fill_to = Vector2(0.5125367, 0)
+
 [sub_resource type="LabelSettings" id="LabelSettings_p7vwb"]
 font_size = 40
 font_color = Color(1, 1, 0.54901963, 1)
@@ -44,38 +56,41 @@ font_color = Color(1, 1, 0.54901963, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_ktti3"]
 font_size = 22
 
-[node name="UI" type="CanvasLayer" unique_id=1376955447]
-layer = -1
-
-[node name="Background" type="TextureRect" parent="." unique_id=1234969346]
+[node name="UI" type="Control" unique_id=670525049]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1152.0
-offset_top = 2.203054e-05
-offset_right = 647.9999
-offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 1.5707964
-texture = SubResource("GradientTexture1D_7dvkv")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="TextureRect" parent="." unique_id=1234969346]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("GradientTexture2D_vdcm2")
 
 [node name="MiddleLine" type="Panel" parent="Background" unique_id=67409442]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_right = 0.00012207031
-offset_bottom = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nt7q6")
 
 [node name="Frame" type="NinePatchRect" parent="Background" unique_id=303754039]
-layout_mode = 0
-offset_right = 323.9999
-offset_bottom = 576.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(2, 2)
 texture = ExtResource("1_nt7q6")
 region_rect = Rect2(0, 0, 128, 128)
@@ -84,30 +99,33 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="LeftFrameContainer" type="AspectRatioContainer" parent="." unique_id=335175062]
-offset_top = 129.0
-offset_right = 577.0
-offset_bottom = 449.0
-
-[node name="LeftFrame" type="TextureRect" parent="LeftFrameContainer" unique_id=1960501715]
-layout_mode = 2
+[node name="LeftFrame" type="TextureRect" parent="." unique_id=1960501715]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.4
+anchor_bottom = 0.7
 texture = ExtResource("1_nt7q6")
 
-[node name="RightFrameContainer" type="AspectRatioContainer" parent="." unique_id=976564762]
-offset_left = 577.0
-offset_top = 129.0
-offset_right = 1154.0
-offset_bottom = 449.0
-
-[node name="RightFrame" type="TextureRect" parent="RightFrameContainer" unique_id=518303805]
-layout_mode = 2
+[node name="RightFrame" type="TextureRect" parent="." unique_id=518303805]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.70000005
 texture = ExtResource("1_nt7q6")
 
 [node name="Description" type="Panel" parent="." unique_id=858782548]
-offset_left = 706.0
-offset_top = 481.0
-offset_right = 1025.0
-offset_bottom = 632.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.74200004
+anchor_right = 0.90000004
+anchor_bottom = 0.96900004
 
 [node name="Label" type="RichTextLabel" parent="Description" unique_id=427506726]
 layout_mode = 1
@@ -129,11 +147,10 @@ script = ExtResource("2_wm3ai")
 
 [node name="Frame" type="NinePatchRect" parent="Description" unique_id=385068162]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
+scale = Vector2(2, 2)
 texture = ExtResource("1_nt7q6")
 region_rect = Rect2(0, 0, 128, 128)
 patch_margin_left = 8
@@ -142,27 +159,28 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="PlayerButtons" type="Control" parent="." unique_id=1554163923]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 19.0
-offset_top = 513.0
-offset_right = 449.0
-offset_bottom = 603.0
+layout_mode = 1
+anchor_left = 0.01
+anchor_top = 0.74200004
+anchor_right = 0.39000002
+anchor_bottom = 0.94200003
+offset_top = 0.18395996
+offset_right = -0.2800293
+offset_bottom = 0.18395996
 script = ExtResource("2_x4jx1")
 
-[node name="MainButtons" type="FlowContainer" parent="PlayerButtons" unique_id=482404210]
+[node name="MainButtons" type="HBoxContainer" parent="PlayerButtons" unique_id=257581864]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -90.0
-offset_right = 430.0
-offset_bottom = 1.0
-grow_vertical = 0
-theme_override_constants/h_separation = 10
+offset_bottom = 0.4000244
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
 
 [node name="FleeButton" type="Button" parent="PlayerButtons/MainButtons" unique_id=1684836385]
-custom_minimum_size = Vector2(100, 90)
+custom_minimum_size = Vector2(100, 118)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8627451, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.8627451, 0, 0, 1)
@@ -189,42 +207,33 @@ patch_margin_bottom = 8
 [node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/FleeButton" unique_id=1197751559]
 script = ExtResource("4_7dvkv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/MainButtons" unique_id=1783534943]
+[node name="GridContainer" type="GridContainer" parent="PlayerButtons/MainButtons" unique_id=491154299]
 layout_mode = 2
-theme_override_constants/separation = 10
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 3
 
-[node name="HBoxContainerTop" type="HBoxContainer" parent="PlayerButtons/MainButtons/VBoxContainer" unique_id=1221436348]
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="AttackButton" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop" unique_id=2106514306 instance=ExtResource("4_cgfq5")]
+[node name="AttackButton" parent="PlayerButtons/MainButtons/GridContainer" unique_id=2106514306 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 
-[node name="HeavyHitButton" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop" unique_id=1254640704 instance=ExtResource("4_cgfq5")]
+[node name="HeavyHitButton" parent="PlayerButtons/MainButtons/GridContainer" unique_id=1254640704 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Heavy Hit"
 
-[node name="WaitButton" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerTop" unique_id=2023004818 instance=ExtResource("4_cgfq5")]
+[node name="WaitButton" parent="PlayerButtons/MainButtons/GridContainer" unique_id=2023004818 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Wait"
 
-[node name="HBoxContainerBottom" type="HBoxContainer" parent="PlayerButtons/MainButtons/VBoxContainer" unique_id=81072897]
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="SpellsButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=832292902]
-custom_minimum_size = Vector2(100, 40)
+[node name="SpellsButton" type="Button" parent="PlayerButtons/MainButtons/GridContainer" unique_id=832292902]
+custom_minimum_size = Vector2(100, 63)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.43137255, 0.8745098, 0.8745098, 1)
 theme_override_colors/font_pressed_color = Color(0, 0.29803923, 1, 1)
 theme_override_font_sizes/font_size = 18
 text = "Spells"
 
-[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/SpellsButton" unique_id=1306061864]
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/GridContainer/SpellsButton" unique_id=1306061864]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -238,18 +247,18 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/SpellsButton" unique_id=97900879]
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/GridContainer/SpellsButton" unique_id=97900879]
 script = ExtResource("4_7dvkv")
 
-[node name="AbilitiesButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=1904351791]
-custom_minimum_size = Vector2(100, 40)
+[node name="AbilitiesButton" type="Button" parent="PlayerButtons/MainButtons/GridContainer" unique_id=1904351791]
+custom_minimum_size = Vector2(100, 63)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0.43137255, 0.8745098, 1)
 theme_override_colors/font_pressed_color = Color(0.6313726, 0.21568628, 0.5058824, 1)
 theme_override_font_sizes/font_size = 18
 text = "Abilities"
 
-[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/AbilitiesButton" unique_id=1463587011]
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/GridContainer/AbilitiesButton" unique_id=1463587011]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -263,18 +272,18 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/AbilitiesButton" unique_id=776011663]
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/GridContainer/AbilitiesButton" unique_id=776011663]
 script = ExtResource("4_7dvkv")
 
-[node name="ItemsButton" type="Button" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom" unique_id=1036772499]
-custom_minimum_size = Vector2(100, 40)
+[node name="ItemsButton" type="Button" parent="PlayerButtons/MainButtons/GridContainer" unique_id=1036772499]
+custom_minimum_size = Vector2(100, 63)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.43137255, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.5686275, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "Items"
 
-[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/ItemsButton" unique_id=529433082]
+[node name="ButtonFrame" type="NinePatchRect" parent="PlayerButtons/MainButtons/GridContainer/ItemsButton" unique_id=529433082]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -288,24 +297,25 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/ItemsButton" unique_id=627677003]
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/MainButtons/GridContainer/ItemsButton" unique_id=627677003]
 script = ExtResource("4_7dvkv")
 
-[node name="SpellsButtons" type="FlowContainer" parent="PlayerButtons" unique_id=1337411407]
+[node name="SpellsButtons" type="HBoxContainer" parent="PlayerButtons" unique_id=661156587]
 visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -90.0
-offset_right = 430.0
-offset_bottom = 1.0
+offset_left = 0.4800005
+offset_top = -129.59998
+offset_right = 437.48
+offset_bottom = 0.4000244
 grow_vertical = 0
-theme_override_constants/h_separation = 10
+theme_override_constants/separation = 5
 script = ExtResource("3_yev5y")
 
 [node name="BackButton" type="Button" parent="PlayerButtons/SpellsButtons" unique_id=604767870]
-custom_minimum_size = Vector2(100, 90)
+custom_minimum_size = Vector2(100, 118)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -328,60 +338,50 @@ patch_margin_bottom = 8
 [node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/SpellsButtons/BackButton" unique_id=1418133938]
 script = ExtResource("4_7dvkv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/SpellsButtons" unique_id=841205950]
+[node name="GridContainer" type="GridContainer" parent="PlayerButtons/SpellsButtons" unique_id=1226319032]
 layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
+columns = 3
 
-[node name="HBoxContainerTop" type="HBoxContainer" parent="PlayerButtons/SpellsButtons/VBoxContainer" unique_id=1711571486]
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="SpellButton1" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerTop" unique_id=1050280229 instance=ExtResource("4_cgfq5")]
+[node name="SpellButton1" parent="PlayerButtons/SpellsButtons/GridContainer" unique_id=1050280229 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Spell #1"
 
-[node name="SpellButton2" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerTop" unique_id=828852315 instance=ExtResource("4_cgfq5")]
+[node name="SpellButton2" parent="PlayerButtons/SpellsButtons/GridContainer" unique_id=828852315 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Spell #2"
 
-[node name="SpellButton3" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerTop" unique_id=1245397742 instance=ExtResource("4_cgfq5")]
+[node name="SpellButton3" parent="PlayerButtons/SpellsButtons/GridContainer" unique_id=1245397742 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Spell #3"
 
-[node name="HBoxContainerBottom" type="HBoxContainer" parent="PlayerButtons/SpellsButtons/VBoxContainer" unique_id=119376817]
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="SpellButton4" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerBottom" unique_id=1742490417 instance=ExtResource("4_cgfq5")]
+[node name="SpellButton4" parent="PlayerButtons/SpellsButtons/GridContainer" unique_id=1742490417 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Spell #4"
 
-[node name="SpellButton5" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerBottom" unique_id=1781435264 instance=ExtResource("4_cgfq5")]
+[node name="SpellButton5" parent="PlayerButtons/SpellsButtons/GridContainer" unique_id=1781435264 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Spell #5"
 
-[node name="SpellButton6" parent="PlayerButtons/SpellsButtons/VBoxContainer/HBoxContainerBottom" unique_id=777900011 instance=ExtResource("4_cgfq5")]
+[node name="SpellButton6" parent="PlayerButtons/SpellsButtons/GridContainer" unique_id=777900011 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Spell #6"
 
-[node name="AbilitiesButtons" type="FlowContainer" parent="PlayerButtons" unique_id=2083994477]
+[node name="AbilitiesButtons" type="HBoxContainer" parent="PlayerButtons" unique_id=793631924]
 visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -90.0
-offset_right = 430.0
-offset_bottom = 1.0
+offset_left = 0.4800005
+offset_top = -129.59998
+offset_right = 437.48
+offset_bottom = 0.4000244
 grow_vertical = 0
-theme_override_constants/h_separation = 10
+theme_override_constants/separation = 5
 script = ExtResource("3_yev5y")
 
 [node name="BackButton" type="Button" parent="PlayerButtons/AbilitiesButtons" unique_id=983139411]
-custom_minimum_size = Vector2(100, 90)
+custom_minimum_size = Vector2(100, 118)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -404,59 +404,52 @@ patch_margin_bottom = 8
 [node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/AbilitiesButtons/BackButton" unique_id=769420523]
 script = ExtResource("4_7dvkv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/AbilitiesButtons" unique_id=112599872]
+[node name="GridContainer" type="GridContainer" parent="PlayerButtons/AbilitiesButtons" unique_id=1133224935]
 layout_mode = 2
-theme_override_constants/separation = 10
+columns = 3
 
-[node name="HBoxContainerTop" type="HBoxContainer" parent="PlayerButtons/AbilitiesButtons/VBoxContainer" unique_id=1097116211]
-custom_minimum_size = Vector2(100, 40)
+[node name="AbilityButton1" parent="PlayerButtons/AbilitiesButtons/GridContainer" unique_id=1406873721 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_constants/separation = 10
+text = "Ability #1
+and"
 
-[node name="AbilityButton1" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerTop" unique_id=1406873721 instance=ExtResource("4_cgfq5")]
-layout_mode = 2
-text = "Ability #1"
-
-[node name="AbilityButton2" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerTop" unique_id=867991743 instance=ExtResource("4_cgfq5")]
+[node name="AbilityButton2" parent="PlayerButtons/AbilitiesButtons/GridContainer" unique_id=867991743 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Ability #2"
 
-[node name="AbilityButton3" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerTop" unique_id=1885206996 instance=ExtResource("4_cgfq5")]
+[node name="AbilityButton3" parent="PlayerButtons/AbilitiesButtons/GridContainer" unique_id=1885206996 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Ability #3"
 
-[node name="HBoxContainerBottom" type="HBoxContainer" parent="PlayerButtons/AbilitiesButtons/VBoxContainer" unique_id=397953533]
-custom_minimum_size = Vector2(100, 40)
+[node name="AbilityButton4" parent="PlayerButtons/AbilitiesButtons/GridContainer" unique_id=752327032 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
-theme_override_constants/separation = 10
+text = "Ability #4
+and"
 
-[node name="AbilityButton4" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerBottom" unique_id=752327032 instance=ExtResource("4_cgfq5")]
-layout_mode = 2
-text = "Ability #4"
-
-[node name="AbilityButton5" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerBottom" unique_id=1444607998 instance=ExtResource("4_cgfq5")]
+[node name="AbilityButton5" parent="PlayerButtons/AbilitiesButtons/GridContainer" unique_id=1444607998 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Ability #5"
 
-[node name="AbilityButton6" parent="PlayerButtons/AbilitiesButtons/VBoxContainer/HBoxContainerBottom" unique_id=1676413428 instance=ExtResource("4_cgfq5")]
+[node name="AbilityButton6" parent="PlayerButtons/AbilitiesButtons/GridContainer" unique_id=1676413428 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Ability #6"
 
-[node name="ItemsButtons" type="FlowContainer" parent="PlayerButtons" unique_id=1125047260]
+[node name="ItemsButtons" type="HBoxContainer" parent="PlayerButtons" unique_id=273758043]
 visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -90.0
-offset_right = 430.0
-offset_bottom = 1.0
+offset_left = 0.4800005
+offset_top = -129.59998
+offset_right = 437.48
+offset_bottom = 0.4000244
 grow_vertical = 0
-theme_override_constants/h_separation = 10
+theme_override_constants/separation = 5
 script = ExtResource("3_yev5y")
 
 [node name="BackButton" type="Button" parent="PlayerButtons/ItemsButtons" unique_id=1899926946]
-custom_minimum_size = Vector2(100, 90)
+custom_minimum_size = Vector2(100, 118)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -479,45 +472,36 @@ patch_margin_bottom = 8
 [node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerButtons/ItemsButtons/BackButton" unique_id=687292662]
 script = ExtResource("4_7dvkv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerButtons/ItemsButtons" unique_id=1031269398]
+[node name="GridContainer" type="GridContainer" parent="PlayerButtons/ItemsButtons" unique_id=1127579698]
 layout_mode = 2
-theme_override_constants/separation = 10
+columns = 3
 
-[node name="HBoxContainerTop" type="HBoxContainer" parent="PlayerButtons/ItemsButtons/VBoxContainer" unique_id=1523835044]
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="ItemButton1" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerTop" unique_id=699046802 instance=ExtResource("4_cgfq5")]
+[node name="ItemButton1" parent="PlayerButtons/ItemsButtons/GridContainer" unique_id=699046802 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Item #1"
 
-[node name="ItemButton2" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerTop" unique_id=1589396691 instance=ExtResource("4_cgfq5")]
+[node name="ItemButton2" parent="PlayerButtons/ItemsButtons/GridContainer" unique_id=1589396691 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Item #2"
 
-[node name="ItemButton3" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerTop" unique_id=1880644841 instance=ExtResource("4_cgfq5")]
+[node name="ItemButton3" parent="PlayerButtons/ItemsButtons/GridContainer" unique_id=1880644841 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Item #3"
 
-[node name="HBoxContainerBottom" type="HBoxContainer" parent="PlayerButtons/ItemsButtons/VBoxContainer" unique_id=143707720]
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="ItemButton4" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerBottom" unique_id=2054655060 instance=ExtResource("4_cgfq5")]
+[node name="ItemButton4" parent="PlayerButtons/ItemsButtons/GridContainer" unique_id=2054655060 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Item #4"
 
-[node name="ItemButton5" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerBottom" unique_id=1303203966 instance=ExtResource("4_cgfq5")]
+[node name="ItemButton5" parent="PlayerButtons/ItemsButtons/GridContainer" unique_id=1303203966 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Item #5"
 
-[node name="ItemButton6" parent="PlayerButtons/ItemsButtons/VBoxContainer/HBoxContainerBottom" unique_id=894350007 instance=ExtResource("4_cgfq5")]
+[node name="ItemButton6" parent="PlayerButtons/ItemsButtons/GridContainer" unique_id=894350007 instance=ExtResource("4_cgfq5")]
 layout_mode = 2
 text = "Item #6"
 
 [node name="TurnCountLabel" type="Label" parent="." unique_id=831987009]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -539,17 +523,19 @@ script = ExtResource("6_8dubc")
 
 [node name="FleePopup" type="Panel" parent="." unique_id=2001495555]
 visible = false
-offset_left = 74.0
-offset_top = 497.0
-offset_right = 504.0
-offset_bottom = 587.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.75
+anchor_right = 0.4
+anchor_bottom = 0.9
 script = ExtResource("7_cgfq5")
 
 [node name="FleeLabel" type="Label" parent="FleePopup" unique_id=1369155439]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
-offset_bottom = 43.0
+anchor_bottom = 0.4
 grow_horizontal = 2
 text = "Are you sure you want to flee?"
 label_settings = SubResource("LabelSettings_7dvkv")
@@ -572,15 +558,15 @@ patch_margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="FleePopup" unique_id=1463863628]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -141.0
-offset_top = -50.0
-offset_right = 141.0
-offset_bottom = -10.0
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.45
+anchor_right = 0.85
+anchor_bottom = 0.8
+offset_left = -0.05970764
+offset_top = -0.010047913
+offset_right = 0.059692383
+offset_bottom = -0.0020141602
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 50
@@ -634,29 +620,20 @@ script = ExtResource("4_7dvkv")
 
 [node name="EndScreen" type="TextureRect" parent="." unique_id=761965085]
 visible = false
-anchors_preset = 15
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1152.0
-offset_top = 2.203054e-05
-offset_right = 647.9999
-offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 1.5707964
-texture = SubResource("GradientTexture1D_7dvkv")
+texture = SubResource("GradientTexture2D_6rmj2")
 script = ExtResource("7_ktti3")
 
 [node name="Frame" type="NinePatchRect" parent="EndScreen" unique_id=323891054]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 6.1035156e-05
-offset_right = -324.0
-offset_bottom = -576.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
 scale = Vector2(2, 2)
 texture = ExtResource("1_nt7q6")
 region_rect = Rect2(0, 0, 128, 128)
@@ -667,18 +644,13 @@ patch_margin_bottom = 8
 
 [node name="ResultLabel" type="Label" parent="EndScreen" unique_id=828230821]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -212.99992
-offset_top = 267.5
-offset_right = 324.00006
-offset_bottom = 337.5
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.1
+anchor_right = 0.75
+anchor_bottom = 0.2
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -1.5707964
 text = "You have conquered your foe!"
 label_settings = SubResource("LabelSettings_p7vwb")
 horizontal_alignment = 1
@@ -686,18 +658,13 @@ vertical_alignment = 1
 
 [node name="QuoteLabel" type="RichTextLabel" parent="EndScreen" unique_id=532884020]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -146.99992
-offset_top = 151.0
-offset_right = 155.00006
-offset_bottom = 241.0
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.25
+anchor_right = 0.65
+anchor_bottom = 0.35
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -1.5707964
 bbcode_enabled = true
 text = "[font_size=20][i],,With great power comes great responsibility.\"[/i]"
 horizontal_alignment = 1
@@ -706,23 +673,22 @@ vertical_alignment = 1
 [node name="ContinueButton" type="Button" parent="EndScreen" unique_id=1040283599]
 material = SubResource("CanvasItemMaterial_cgfq5")
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -54.99994
-offset_top = 50.0
-offset_right = 45.00006
-offset_bottom = 90.0
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.38
+anchor_right = 0.55
+anchor_bottom = 0.45
+offset_left = 0.29595947
+offset_top = 0.22398376
+offset_right = 0.07196045
+offset_bottom = 0.047973633
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -1.5707964
 text = "Continue"
 
 [node name="ButtonFrame" type="NinePatchRect" parent="EndScreen/ContinueButton" unique_id=1626902926]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -739,18 +705,13 @@ script = ExtResource("4_7dvkv")
 
 [node name="GainedLabel" type="Label" parent="EndScreen" unique_id=1549247624]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 13.000061
-offset_top = 84.5
-offset_right = 182.00006
-offset_bottom = 111.5
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.48
+anchor_right = 0.58
+anchor_bottom = 0.54
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -1.5707964
 text = "You have gained:"
 label_settings = SubResource("LabelSettings_ktti3")
 horizontal_alignment = 1
@@ -758,44 +719,34 @@ vertical_alignment = 1
 
 [node name="LootLabel" type="RichTextLabel" parent="EndScreen" unique_id=398534742]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 47.00009
-offset_top = 462.0
-offset_right = 971.00006
-offset_bottom = 503.0
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.55
+anchor_right = 0.9
+anchor_bottom = 0.65
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -1.5707964
 bbcode_enabled = true
 text = "[font_size=18]+20 EXP,	+15 GOLD"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PlayerSprite" type="TextureRect" parent="EndScreen" unique_id=1636798184]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 108.00006
-offset_top = 85.0
-offset_right = 172.00006
-offset_bottom = 149.0
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.65
+anchor_right = 0.6
+anchor_bottom = 0.95
+offset_left = 0.37597656
+offset_top = -0.104034424
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -1.5707964
-scale = Vector2(3, 3)
 texture = ExtResource("7_p7vwb")
 
 [connection signal="pressed" from="PlayerButtons/MainButtons/FleeButton" to="PlayerButtons" method="_on_flee_button_pressed"]
-[connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/SpellsButton" to="PlayerButtons" method="_on_spells_button_pressed"]
-[connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/AbilitiesButton" to="PlayerButtons" method="_on_abilities_button_pressed"]
-[connection signal="pressed" from="PlayerButtons/MainButtons/VBoxContainer/HBoxContainerBottom/ItemsButton" to="PlayerButtons" method="_on_items_button_pressed"]
+[connection signal="pressed" from="PlayerButtons/MainButtons/GridContainer/SpellsButton" to="PlayerButtons" method="_on_spells_button_pressed"]
+[connection signal="pressed" from="PlayerButtons/MainButtons/GridContainer/AbilitiesButton" to="PlayerButtons" method="_on_abilities_button_pressed"]
+[connection signal="pressed" from="PlayerButtons/MainButtons/GridContainer/ItemsButton" to="PlayerButtons" method="_on_items_button_pressed"]
 [connection signal="pressed" from="FleePopup/HBoxContainer/YesButton" to="FleePopup" method="_on_yes_button_pressed"]
 [connection signal="pressed" from="FleePopup/HBoxContainer/NoButton" to="FleePopup" method="_on_no_button_pressed"]
 [connection signal="pressed" from="EndScreen/ContinueButton" to="EndScreen" method="_on_continue_button_pressed"]

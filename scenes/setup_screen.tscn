@@ -1,0 +1,903 @@
+[gd_scene format=3 uid="uid://cojwlwtvm2u7y"]
+
+[ext_resource type="Script" uid="uid://dcfpv5ep5j1eb" path="res://scripts/game_setup.gd" id="1_g3j2y"]
+[ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="1_v3wbd"]
+[ext_resource type="Script" uid="uid://bl5xxqbs4xcee" path="res://scripts/player_setup.gd" id="2_74idx"]
+[ext_resource type="Script" uid="uid://dfvjw7ddiu8nu" path="res://scripts/ai_setup.gd" id="3_j878g"]
+[ext_resource type="Script" uid="uid://qbrth1d3v4vv" path="res://scripts/textures_selection.gd" id="3_kt6hf"]
+[ext_resource type="Texture2D" uid="uid://bfpd5h0t1hhph" path="res://assets/sprites/pikeman.png" id="4_omcid"]
+[ext_resource type="Texture2D" uid="uid://bdkkp4bug2uky" path="res://assets/sprites/crossbowman.png" id="5_g3j2y"]
+[ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="6_ytgjq"]
+[ext_resource type="Texture2D" uid="uid://dbk5colv2rcj3" path="res://assets/sprites/skeleton.png" id="7_xhh54"]
+[ext_resource type="Texture2D" uid="uid://sbrqg28jmfka" path="res://assets/sprites/zombie.png" id="8_8oobj"]
+[ext_resource type="Texture2D" uid="uid://cnm75nvokqkvw" path="res://assets/sprites/wraith.png" id="9_fwi4l"]
+
+[sub_resource type="Gradient" id="Gradient_74idx"]
+colors = PackedColorArray(0.078431375, 0.039215688, 0, 1, 0.47058824, 0.23529412, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j878g"]
+gradient = SubResource("Gradient_74idx")
+width = 128
+height = 128
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3wbd"]
+font_size = 40
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_74idx"]
+font_size = 22
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="SetupScreen" type="Control" unique_id=768695827]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g3j2y")
+
+[node name="Background" type="TextureRect" parent="." unique_id=398042172]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_j878g")
+
+[node name="Frame" type="NinePatchRect" parent="." unique_id=1417263828]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
+scale = Vector2(2, 2)
+texture = ExtResource("1_v3wbd")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="SetupLabel" type="Label" parent="." unique_id=499501090]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.05
+anchor_right = 0.75000006
+anchor_bottom = 0.2
+offset_left = 0.4159851
+offset_top = 7.6959953
+offset_right = -0.41607666
+offset_bottom = -7.8079987
+grow_horizontal = 2
+grow_vertical = 2
+text = "Combat System Manual Setup"
+label_settings = SubResource("LabelSettings_v3wbd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerSetup" type="Control" parent="." unique_id=753674740]
+layout_mode = 1
+anchor_left = 0.05
+anchor_top = 0.25
+anchor_right = 0.4
+anchor_bottom = 0.92600006
+offset_left = -0.33600616
+offset_top = 0.22398376
+offset_right = -0.08001709
+offset_bottom = -0.048034668
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_74idx")
+
+[node name="Frame" type="NinePatchRect" parent="PlayerSetup" unique_id=1070538638]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("1_v3wbd")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="PlayerLabel" type="Label" parent="PlayerSetup" unique_id=1443211805]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.99199
+offset_top = 9.776016
+offset_right = 68.008026
+offset_bottom = 36.776016
+grow_horizontal = 2
+text = "Player Setup"
+label_settings = SubResource("LabelSettings_74idx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="PlayerSetup" unique_id=1542322881]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.23400001
+anchor_bottom = 0.17
+offset_right = 0.044792175
+offset_bottom = -0.19532776
+text = "Name:"
+vertical_alignment = 1
+
+[node name="PlayerNameInput" type="LineEdit" parent="PlayerSetup" unique_id=2053877107]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23500001
+anchor_top = 0.1
+anchor_right = 0.75
+anchor_bottom = 0.17
+offset_left = -0.076156616
+offset_right = 58.144043
+offset_bottom = -0.1893158
+text = "Hero"
+
+[node name="TextureLabel" type="Label" parent="PlayerSetup" unique_id=1789390284]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.22800002
+anchor_right = 0.23500001
+anchor_bottom = 0.277
+offset_top = -0.03690338
+offset_right = -0.076164246
+offset_bottom = -0.043876648
+text = "Texture:"
+vertical_alignment = 1
+
+[node name="SelectableTextures" type="Control" parent="PlayerSetup" unique_id=1110154747]
+clip_contents = true
+layout_mode = 1
+anchor_left = 0.23500001
+anchor_top = 0.18900001
+anchor_right = 0.90400004
+anchor_bottom = 0.303
+offset_left = -0.076156616
+offset_top = 0.036346436
+offset_right = -1.9882202
+offset_bottom = 0.12988281
+script = ExtResource("3_kt6hf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerSetup/SelectableTextures" unique_id=887856919]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.593
+anchor_bottom = 1.0
+offset_right = -226.03104
+offset_bottom = -10.0
+
+[node name="PikemanButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=2086377951]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../WraithButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../CrossbowmanButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("4_omcid")
+icon_alignment = 1
+expand_icon = true
+
+[node name="CrossbowmanButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=877109755]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../PikemanButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../KnightButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("5_g3j2y")
+icon_alignment = 1
+expand_icon = true
+
+[node name="KnightButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=1675199276]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../CrossbowmanButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../SkeletonButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("6_ytgjq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="SkeletonButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=1728713052]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../KnightButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../ZombieButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("7_xhh54")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ZombieButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=1791091513]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../SkeletonButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../WraithButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("8_8oobj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="WraithButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=503300501]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../ZombieButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../PikemanButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("9_fwi4l")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HSlider" type="HSlider" parent="PlayerSetup" unique_id=1527222058]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23500001
+anchor_top = 0.303
+anchor_right = 0.89900005
+anchor_bottom = 0.34
+offset_left = -0.076156616
+offset_top = 0.12988281
+offset_right = -1.9709473
+offset_bottom = -0.06782532
+
+[node name="StatsVBoxContainer" type="VBoxContainer" parent="PlayerSetup" unique_id=507062120]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.35
+anchor_right = 0.5
+anchor_bottom = 0.9
+theme_override_constants/separation = 25
+
+[node name="AttributeContainer" type="GridContainer" parent="PlayerSetup/StatsVBoxContainer" unique_id=372064302]
+layout_mode = 2
+theme_override_constants/h_separation = 28
+columns = 2
+
+[node name="HealthLabel" type="Label" parent="PlayerSetup/StatsVBoxContainer/AttributeContainer" unique_id=1919778]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Health:"
+
+[node name="HealthInput" type="SpinBox" parent="PlayerSetup/StatsVBoxContainer/AttributeContainer" unique_id=1657191896]
+layout_mode = 2
+max_value = 1000.0
+value = 150.0
+rounded = true
+alignment = 1
+
+[node name="StaminaLabel" type="Label" parent="PlayerSetup/StatsVBoxContainer/AttributeContainer" unique_id=1648384164]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Stamina:"
+
+[node name="StaminaInput" type="SpinBox" parent="PlayerSetup/StatsVBoxContainer/AttributeContainer" unique_id=1575230933]
+layout_mode = 2
+max_value = 1000.0
+value = 50.0
+rounded = true
+alignment = 1
+
+[node name="ManaLabel" type="Label" parent="PlayerSetup/StatsVBoxContainer/AttributeContainer" unique_id=755234412]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Mana:"
+
+[node name="ManaInput" type="SpinBox" parent="PlayerSetup/StatsVBoxContainer/AttributeContainer" unique_id=1256173735]
+layout_mode = 2
+value = 40.0
+rounded = true
+alignment = 1
+
+[node name="SkillContainer" type="GridContainer" parent="PlayerSetup/StatsVBoxContainer" unique_id=775525293]
+layout_mode = 2
+columns = 2
+
+[node name="AttackLabel" type="Label" parent="PlayerSetup/StatsVBoxContainer/SkillContainer" unique_id=582980910]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Attack:"
+
+[node name="AttackInput" type="SpinBox" parent="PlayerSetup/StatsVBoxContainer/SkillContainer" unique_id=41423985]
+layout_mode = 2
+value = 5.0
+rounded = true
+alignment = 1
+
+[node name="DefenseLabel" type="Label" parent="PlayerSetup/StatsVBoxContainer/SkillContainer" unique_id=2140011664]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Defense:"
+
+[node name="DefenseInput" type="SpinBox" parent="PlayerSetup/StatsVBoxContainer/SkillContainer" unique_id=1843735611]
+layout_mode = 2
+value = 5.0
+rounded = true
+alignment = 1
+
+[node name="SpellPowerLabel" type="Label" parent="PlayerSetup/StatsVBoxContainer/SkillContainer" unique_id=314321147]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Spell Power:"
+
+[node name="SpellPowerInput" type="SpinBox" parent="PlayerSetup/StatsVBoxContainer/SkillContainer" unique_id=234911934]
+layout_mode = 2
+value = 5.0
+rounded = true
+alignment = 1
+
+[node name="MagicResLabel" type="Label" parent="PlayerSetup/StatsVBoxContainer/SkillContainer" unique_id=420145029]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Magic Res:"
+
+[node name="MagicResInput" type="SpinBox" parent="PlayerSetup/StatsVBoxContainer/SkillContainer" unique_id=1318042567]
+layout_mode = 2
+value = 5.0
+rounded = true
+alignment = 1
+
+[node name="CapabilitiesVBoxContainer" type="VBoxContainer" parent="PlayerSetup" unique_id=1564248312]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_top = 0.35
+anchor_right = 0.9
+anchor_bottom = 0.9
+
+[node name="SpellsLabel" type="Label" parent="PlayerSetup/CapabilitiesVBoxContainer" unique_id=442530824]
+layout_mode = 2
+text = "Known Spells:"
+vertical_alignment = 1
+
+[node name="SelectSpellsButton" type="Button" parent="PlayerSetup/CapabilitiesVBoxContainer" unique_id=1073703588]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Select Spells..."
+
+[node name="AbilitiesLabel" type="Label" parent="PlayerSetup/CapabilitiesVBoxContainer" unique_id=1229521796]
+layout_mode = 2
+text = "Known Abilities:"
+vertical_alignment = 1
+
+[node name="SelectAbilitiesButton" type="Button" parent="PlayerSetup/CapabilitiesVBoxContainer" unique_id=1908656465]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Select Abilities..."
+
+[node name="ItemsLabel" type="Label" parent="PlayerSetup/CapabilitiesVBoxContainer" unique_id=1052040848]
+layout_mode = 2
+text = "Possessed Items:"
+vertical_alignment = 1
+
+[node name="SelectItemsButton" type="Button" parent="PlayerSetup/CapabilitiesVBoxContainer" unique_id=788390890]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Select Items..."
+
+[node name="AISetup" type="Control" parent="." unique_id=466418754]
+layout_mode = 1
+anchor_left = 0.6
+anchor_top = 0.25
+anchor_right = 0.95
+anchor_bottom = 0.926
+offset_left = 0.079956055
+offset_top = 0.22398376
+offset_right = 0.3359375
+offset_bottom = -0.24005127
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_j878g")
+
+[node name="Frame" type="NinePatchRect" parent="AISetup" unique_id=633759228]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("1_v3wbd")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="AILabel" type="Label" parent="AISetup" unique_id=581313853]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.007935
+offset_top = 9.776016
+offset_right = 64.992065
+offset_bottom = 36.776016
+grow_horizontal = 2
+text = "Enemy Setup"
+label_settings = SubResource("LabelSettings_74idx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureLabel" type="Label" parent="AISetup" unique_id=246017813]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.148
+anchor_right = 0.23500001
+anchor_bottom = 0.19700001
+offset_top = 0.013595581
+offset_right = -0.09212494
+offset_bottom = 0.0064086914
+text = "Texture:"
+vertical_alignment = 1
+
+[node name="SelectableTextures" type="Control" parent="AISetup" unique_id=837275667]
+clip_contents = true
+layout_mode = 1
+anchor_left = 0.23500001
+anchor_top = 0.11400001
+anchor_right = 0.89900005
+anchor_bottom = 0.22800002
+offset_left = -0.07614136
+offset_top = -0.10855484
+offset_right = 0.029052734
+offset_bottom = -0.015022278
+script = ExtResource("3_kt6hf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AISetup/SelectableTextures" unique_id=810460918]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.194
+anchor_bottom = 1.0
+offset_right = -119.09903
+offset_bottom = -10.0
+
+[node name="PikemanButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=1421805423]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../WraithButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../CrossbowmanButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("4_omcid")
+icon_alignment = 1
+expand_icon = true
+
+[node name="CrossbowmanButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=1769045656]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../PikemanButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../KnightButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("5_g3j2y")
+icon_alignment = 1
+expand_icon = true
+
+[node name="KnightButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=2102578385]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../CrossbowmanButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../SkeletonButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("6_ytgjq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="SkeletonButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=1727118978]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../KnightButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../ZombieButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("7_xhh54")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ZombieButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=1738040857]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../SkeletonButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../WraithButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("8_8oobj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="WraithButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=816719335]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_neighbor_left = NodePath("../ZombieButton")
+focus_neighbor_top = NodePath("../../../PlayerNameInput")
+focus_neighbor_right = NodePath("../PikemanButton")
+focus_neighbor_bottom = NodePath("../../../HSlider")
+toggle_mode = true
+icon = ExtResource("9_fwi4l")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HSlider" type="HSlider" parent="AISetup" unique_id=1191811129]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23500001
+anchor_top = 0.22800002
+anchor_right = 0.89400005
+anchor_bottom = 0.26500002
+offset_left = -0.07614136
+offset_top = 0.0068740845
+offset_right = 0.0463562
+offset_bottom = -0.18373108
+
+[node name="StatsVBoxContainer" type="VBoxContainer" parent="AISetup" unique_id=1535080789]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.303
+anchor_right = 0.5
+anchor_bottom = 0.85300004
+offset_top = 0.18807983
+offset_bottom = 0.51690674
+theme_override_constants/separation = 25
+
+[node name="AttributeContainer" type="GridContainer" parent="AISetup/StatsVBoxContainer" unique_id=915710695]
+layout_mode = 2
+theme_override_constants/h_separation = 28
+columns = 2
+
+[node name="HealthLabel" type="Label" parent="AISetup/StatsVBoxContainer/AttributeContainer" unique_id=471863965]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Health:"
+
+[node name="HealthInput" type="SpinBox" parent="AISetup/StatsVBoxContainer/AttributeContainer" unique_id=2048332435]
+layout_mode = 2
+max_value = 1000.0
+value = 80.0
+rounded = true
+alignment = 1
+
+[node name="StaminaLabel" type="Label" parent="AISetup/StatsVBoxContainer/AttributeContainer" unique_id=1341524340]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Stamina:"
+
+[node name="StaminaInput" type="SpinBox" parent="AISetup/StatsVBoxContainer/AttributeContainer" unique_id=800438480]
+layout_mode = 2
+max_value = 1000.0
+value = 30.0
+rounded = true
+alignment = 1
+
+[node name="ManaLabel" type="Label" parent="AISetup/StatsVBoxContainer/AttributeContainer" unique_id=366042186]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Mana:"
+
+[node name="ManaInput" type="SpinBox" parent="AISetup/StatsVBoxContainer/AttributeContainer" unique_id=1655698347]
+layout_mode = 2
+value = 20.0
+rounded = true
+alignment = 1
+
+[node name="SkillContainer" type="GridContainer" parent="AISetup/StatsVBoxContainer" unique_id=457409870]
+layout_mode = 2
+columns = 2
+
+[node name="AttackLabel" type="Label" parent="AISetup/StatsVBoxContainer/SkillContainer" unique_id=639017247]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Attack:"
+
+[node name="AttackInput" type="SpinBox" parent="AISetup/StatsVBoxContainer/SkillContainer" unique_id=922176822]
+layout_mode = 2
+value = 4.0
+rounded = true
+alignment = 1
+
+[node name="DefenseLabel" type="Label" parent="AISetup/StatsVBoxContainer/SkillContainer" unique_id=436520229]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Defense:"
+
+[node name="DefenseInput" type="SpinBox" parent="AISetup/StatsVBoxContainer/SkillContainer" unique_id=2115169928]
+layout_mode = 2
+value = 3.0
+rounded = true
+alignment = 1
+
+[node name="SpellPowerLabel" type="Label" parent="AISetup/StatsVBoxContainer/SkillContainer" unique_id=1213548903]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Spell Power:"
+
+[node name="SpellPowerInput" type="SpinBox" parent="AISetup/StatsVBoxContainer/SkillContainer" unique_id=1324934669]
+layout_mode = 2
+value = 2.0
+rounded = true
+alignment = 1
+
+[node name="MagicResLabel" type="Label" parent="AISetup/StatsVBoxContainer/SkillContainer" unique_id=1707607949]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Magic Res:"
+
+[node name="MagicResInput" type="SpinBox" parent="AISetup/StatsVBoxContainer/SkillContainer" unique_id=545383531]
+layout_mode = 2
+value = 4.0
+rounded = true
+alignment = 1
+
+[node name="CapabilitiesVBoxContainer" type="VBoxContainer" parent="AISetup" unique_id=536220159]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_top = 0.303
+anchor_right = 0.90400004
+anchor_bottom = 0.85300004
+offset_top = 0.18807983
+offset_right = -1.6138611
+offset_bottom = 0.18807983
+
+[node name="SpellsLabel" type="Label" parent="AISetup/CapabilitiesVBoxContainer" unique_id=104154712]
+layout_mode = 2
+text = "Known Spells:"
+vertical_alignment = 1
+
+[node name="SelectSpellsButton" type="Button" parent="AISetup/CapabilitiesVBoxContainer" unique_id=508164275]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Select Spells..."
+
+[node name="AbilitiesLabel" type="Label" parent="AISetup/CapabilitiesVBoxContainer" unique_id=91712605]
+layout_mode = 2
+text = "Known Abilities:"
+vertical_alignment = 1
+
+[node name="SelectAbilitiesButton" type="Button" parent="AISetup/CapabilitiesVBoxContainer" unique_id=1886440902]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Select Abilities..."
+
+[node name="ItemsLabel" type="Label" parent="AISetup/CapabilitiesVBoxContainer" unique_id=882351634]
+layout_mode = 2
+text = "Possessed Items:"
+vertical_alignment = 1
+
+[node name="SelectItemsButton" type="Button" parent="AISetup/CapabilitiesVBoxContainer" unique_id=470744404]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Select Items..."
+
+[node name="MenuButtons" type="Control" parent="." unique_id=1991910954]
+layout_mode = 1
+anchor_left = 0.448
+anchor_top = 0.25
+anchor_right = 0.55200005
+anchor_bottom = 0.5
+offset_left = -0.0960083
+offset_right = 0.095947266
+offset_bottom = 0.25598145
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuButtons" unique_id=1290727166]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BeginButton" type="Button" parent="MenuButtons/VBoxContainer" unique_id=1003806448]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
+text = "Begin Battle"
+
+[node name="Frame" type="NinePatchRect" parent="MenuButtons/VBoxContainer/BeginButton" unique_id=480746863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_v3wbd")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="SaveButton" type="Button" parent="MenuButtons/VBoxContainer" unique_id=681530398]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
+text = "Save Preset"
+
+[node name="Frame" type="NinePatchRect" parent="MenuButtons/VBoxContainer/SaveButton" unique_id=889444827]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_v3wbd")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="BackButton" type="Button" parent="MenuButtons/VBoxContainer" unique_id=1463121073]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
+text = "Back To Menu"
+
+[node name="Frame" type="NinePatchRect" parent="MenuButtons/VBoxContainer/BackButton" unique_id=512720179]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_v3wbd")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="PlayerSpellsList" type="ItemList" parent="." unique_id=1549918160]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.5
+anchor_right = 0.57
+anchor_bottom = 0.926
+offset_left = 0.57598877
+offset_top = 0.3199768
+offset_right = -0.11999512
+offset_bottom = 0.59198
+select_mode = 2
+item_count = 2
+item_0/text = "Lightning"
+item_1/text = "Heal"
+
+[node name="PlayerAbilitiesList" type="ItemList" parent="." unique_id=1783026039]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.5
+anchor_right = 0.57
+anchor_bottom = 0.926
+offset_left = 0.57598877
+offset_top = 0.3199768
+offset_right = -0.11999512
+offset_bottom = 0.59198
+select_mode = 2
+item_count = 1
+item_0/text = "Focus Energy"
+
+[node name="PlayerItemsList" type="ItemList" parent="." unique_id=1529502865]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.5
+anchor_right = 0.57
+anchor_bottom = 0.926
+offset_left = 0.57598877
+offset_top = 0.3199768
+offset_right = -0.11999512
+offset_bottom = 0.59198
+select_mode = 2
+item_count = 3
+item_0/text = "Health Potion"
+item_1/text = "Stamina Potion"
+item_2/text = "Mana Potion"
+
+[node name="AISpellsList" type="ItemList" parent="." unique_id=1559527473]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.5
+anchor_right = 0.57
+anchor_bottom = 0.926
+offset_left = 0.57598877
+offset_top = 0.3199768
+offset_right = -0.11999512
+offset_bottom = 0.59198
+select_mode = 2
+item_count = 2
+item_0/text = "Lightning"
+item_1/text = "Heal"
+
+[node name="AIAbilitiesList" type="ItemList" parent="." unique_id=1689656641]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.5
+anchor_right = 0.57
+anchor_bottom = 0.926
+offset_left = 0.57598877
+offset_top = 0.3199768
+offset_right = -0.11999512
+offset_bottom = 0.59198
+select_mode = 2
+item_count = 1
+item_0/text = "Focus Energy"
+
+[node name="AIItemsList" type="ItemList" parent="." unique_id=1430333717]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.5
+anchor_right = 0.57
+anchor_bottom = 0.926
+offset_left = 0.57598877
+offset_top = 0.3199768
+offset_right = -0.11999512
+offset_bottom = 0.59198
+select_mode = 2
+item_count = 3
+item_0/text = "Health Potion"
+item_1/text = "Stamina Potion"
+item_2/text = "Mana Potion"
+
+[connection signal="value_changed" from="PlayerSetup/HSlider" to="PlayerSetup/SelectableTextures" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="PlayerSetup/CapabilitiesVBoxContainer/SelectSpellsButton" to="PlayerSetup" method="_on_select_spells_button_pressed"]
+[connection signal="pressed" from="PlayerSetup/CapabilitiesVBoxContainer/SelectAbilitiesButton" to="PlayerSetup" method="_on_select_abilities_button_pressed"]
+[connection signal="pressed" from="PlayerSetup/CapabilitiesVBoxContainer/SelectItemsButton" to="PlayerSetup" method="_on_select_items_button_pressed"]
+[connection signal="value_changed" from="AISetup/HSlider" to="AISetup/SelectableTextures" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="AISetup/CapabilitiesVBoxContainer/SelectSpellsButton" to="AISetup" method="_on_select_spells_button_pressed"]
+[connection signal="pressed" from="AISetup/CapabilitiesVBoxContainer/SelectAbilitiesButton" to="AISetup" method="_on_select_abilities_button_pressed"]
+[connection signal="pressed" from="AISetup/CapabilitiesVBoxContainer/SelectItemsButton" to="AISetup" method="_on_select_items_button_pressed"]
+[connection signal="pressed" from="MenuButtons/VBoxContainer/BeginButton" to="." method="_on_begin_button_pressed"]
+[connection signal="pressed" from="MenuButtons/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MenuButtons/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

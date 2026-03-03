@@ -1,8 +1,8 @@
 # special_buttons.gd
-extends FlowContainer
+extends HBoxContainer
 
 @onready var back_button: Button = $BackButton
-@onready var main_buttons: FlowContainer = $"../MainButtons"
+@onready var main_buttons: HBoxContainer = $"../MainButtons"
 
 func _ready() -> void:
 	back_button.pressed.connect(_on_back_button_pressed)

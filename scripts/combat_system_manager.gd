@@ -6,10 +6,10 @@ signal OnDefeat
 
 @onready var player: Character = $PlayerCharacter
 @onready var ai: Character = $AICharacter
-@onready var player_buttons: Control = $UI/PlayerButtons
-@onready var description_label: RichTextLabel = $UI/Description/Label
-@onready var turn_count_label: Label = $UI/TurnCountLabel
-@onready var end_screen: TextureRect = $UI/EndScreen
+@onready var player_buttons: Control = $CanvasLayer/UI/PlayerButtons
+@onready var description_label: RichTextLabel = $CanvasLayer/UI/Description/Label
+@onready var turn_count_label: Label = $CanvasLayer/UI/TurnCountLabel
+@onready var end_screen: TextureRect = $CanvasLayer/UI/EndScreen
 
 var turn_count: int = 0
 var last_damage: int = 0

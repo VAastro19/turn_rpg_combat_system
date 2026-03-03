@@ -1,8 +1,8 @@
 # flee_popup.gd
 extends Panel
 
-@onready var combat_system_manager: Node2D = get_parent().get_parent()
-@onready var main_buttons: FlowContainer = $"../PlayerButtons/MainButtons"
+@onready var combat_system_manager: Node2D = get_parent().get_parent().get_parent()
+@onready var main_buttons: HBoxContainer = $"../PlayerButtons/MainButtons"
 
 func _ready() -> void:
 	visible = false

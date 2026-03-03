@@ -1,13 +1,13 @@
 # player_buttons.gd
 extends Control
 
-@onready var combat_system_manager: Node2D = get_parent().get_parent()
+@onready var combat_system_manager: Node2D = get_parent().get_parent().get_parent()
 @onready var description_label: RichTextLabel = $"../Description/Label"
 
-@onready var main_buttons_container: FlowContainer = $MainButtons
-@onready var spells_buttons_container: FlowContainer = $SpellsButtons
-@onready var abilities_buttons_container: FlowContainer = $AbilitiesButtons
-@onready var items_buttons_container: FlowContainer = $ItemsButtons
+@onready var main_buttons_container: HBoxContainer = $MainButtons
+@onready var spells_buttons_container: HBoxContainer = $SpellsButtons
+@onready var abilities_buttons_container: HBoxContainer = $AbilitiesButtons
+@onready var items_buttons_container: HBoxContainer = $ItemsButtons
 @onready var flee_button: Button = $MainButtons/FleeButton
 @onready var flee_popup: Panel = $"../FleePopup"
 

@@ -54,13 +54,13 @@ signal OnManaPotion(mana: int)
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var stamina_bar: ProgressBar = $StaminaBar
 @onready var mana_bar: ProgressBar = $ManaBar
-@onready var character_name_label: Label = $CharacterName/CharacterNameLabel
+@onready var character_name_label: RichTextLabel = $CharacterName/CharacterNameLabel
 
 var stamina_bar_offset: float = 325
 var mana_bar_offset: float = 350
 
 func _ready() -> void:
-	character_name_label.text = character_name
+	character_name_label.text = "[font_size=28][b]" + str(character_name) + "[/b]"
 	sprite.texture = display_texture
 	sprite.setup_texture()
 	
