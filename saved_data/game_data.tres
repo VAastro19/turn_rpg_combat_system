@@ -1,22 +1,21 @@
-[gd_resource type="Resource" script_class="SavedData" format=3 uid="uid://hni2ie4ld5wg"]
+[gd_resource type="Resource" script_class="SavedData" format=3]
 
-[ext_resource type="Texture2D" uid="uid://dbk5colv2rcj3" path="res://assets/sprites/skeleton.png" id="1_5qnu5"]
-[ext_resource type="Script" uid="uid://s5chh1juepma" path="res://scripts/combat_action.gd" id="2_5nxds"]
-[ext_resource type="Resource" uid="uid://bwpk2n7gsh2qs" path="res://combat_actions/attack.tres" id="3_lkedf"]
-[ext_resource type="Resource" uid="uid://bwhg05r1te3vo" path="res://combat_actions/heavy_attack.tres" id="4_or5xk"]
-[ext_resource type="Resource" uid="uid://bv4bklksued3o" path="res://combat_actions/wait.tres" id="5_cgumd"]
-[ext_resource type="Resource" uid="uid://ctb57tlq844dq" path="res://combat_actions/lightning.tres" id="6_u5lsb"]
-[ext_resource type="Resource" uid="uid://cvck6df2oeabm" path="res://combat_actions/focus_energy.tres" id="7_81eit"]
-[ext_resource type="Resource" uid="uid://cek1kq2v2rr0f" path="res://combat_actions/mana_potion.tres" id="8_rsvjv"]
-[ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="9_245l5"]
-[ext_resource type="Resource" uid="uid://c0k5yxstgy5pt" path="res://combat_actions/heal.tres" id="10_veufv"]
-[ext_resource type="Script" uid="uid://d088cvl6f11nc" path="res://saved_data/saved_data.gd" id="11_0wskw"]
+[ext_resource type="Texture2D" path="res://assets/sprites/skeleton.png" id="1_3e7m6"]
+[ext_resource type="Script" path="res://combat_actions/scripts/combat_action.gd" id="2_5qnu5"]
+[ext_resource type="Resource" path="res://combat_actions/attack.tres" id="3_5nxds"]
+[ext_resource type="Resource" path="res://combat_actions/heavy_attack.tres" id="4_lkedf"]
+[ext_resource type="Resource" path="res://combat_actions/wait.tres" id="5_or5xk"]
+[ext_resource type="Resource" path="res://combat_actions/heal.tres" id="6_cgumd"]
+[ext_resource type="Resource" path="res://combat_actions/focus_energy.tres" id="7_u5lsb"]
+[ext_resource type="Resource" path="res://combat_actions/mana_potion.tres" id="8_81eit"]
+[ext_resource type="Texture2D" path="res://assets/sprites/knight.png" id="9_rsvjv"]
+[ext_resource type="Script" path="res://saved_data/saved_data.gd" id="10_245l5"]
 
 [resource]
-script = ExtResource("11_0wskw")
+script = ExtResource("10_245l5")
 ai_data = {
 "Attack": 4.0,
-"CombatActions": Array[ExtResource("2_5nxds")]([ExtResource("3_lkedf"), ExtResource("4_or5xk"), ExtResource("5_cgumd"), ExtResource("6_u5lsb"), ExtResource("7_81eit"), ExtResource("8_rsvjv")]),
+"CombatActions": Array[ExtResource("2_5qnu5")]([ExtResource("3_5nxds"), ExtResource("4_lkedf"), ExtResource("5_or5xk"), ExtResource("6_cgumd"), ExtResource("7_u5lsb"), ExtResource("8_81eit")]),
 "Defense": 3.0,
 "Experience": 50,
 "Health": 80.0,
@@ -31,11 +30,11 @@ ai_data = {
 "Name": "Skeleton",
 "SpellPower": 2.0,
 "Stamina": 30.0,
-"Texture": ExtResource("1_5qnu5")
+"Texture": ExtResource("1_3e7m6")
 }
 player_data = {
 "Attack": 5.0,
-"CombatActions": Array[ExtResource("2_5nxds")]([ExtResource("3_lkedf"), ExtResource("4_or5xk"), ExtResource("5_cgumd"), ExtResource("10_veufv"), ExtResource("7_81eit"), ExtResource("8_rsvjv")]),
+"CombatActions": Array[ExtResource("2_5qnu5")]([ExtResource("3_5nxds"), ExtResource("4_lkedf"), ExtResource("5_or5xk"), ExtResource("6_cgumd"), ExtResource("7_u5lsb"), ExtResource("8_81eit")]),
 "Defense": 5.0,
 "Experience": 50,
 "Health": 150.0,
@@ -50,5 +49,5 @@ player_data = {
 "Name": "Hero",
 "SpellPower": 5.0,
 "Stamina": 50.0,
-"Texture": ExtResource("9_245l5")
+"Texture": ExtResource("9_rsvjv")
 }

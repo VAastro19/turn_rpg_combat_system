@@ -1,15 +1,16 @@
 [gd_scene format=3 uid="uid://cojwlwtvm2u7y"]
 
-[ext_resource type="Script" uid="uid://dcfpv5ep5j1eb" path="res://scripts/game_setup.gd" id="1_g3j2y"]
+[ext_resource type="Script" uid="uid://dcfpv5ep5j1eb" path="res://main/scripts/game_setup.gd" id="1_g3j2y"]
 [ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="1_v3wbd"]
-[ext_resource type="Script" uid="uid://bl5xxqbs4xcee" path="res://scripts/character_setup.gd" id="2_74idx"]
-[ext_resource type="Script" uid="uid://qbrth1d3v4vv" path="res://scripts/textures_selection.gd" id="3_kt6hf"]
+[ext_resource type="Script" uid="uid://bl5xxqbs4xcee" path="res://character/scripts/character_setup.gd" id="2_74idx"]
+[ext_resource type="Script" uid="uid://qbrth1d3v4vv" path="res://main/scripts/textures_selection.gd" id="3_kt6hf"]
 [ext_resource type="Texture2D" uid="uid://bfpd5h0t1hhph" path="res://assets/sprites/pikeman.png" id="4_omcid"]
 [ext_resource type="Texture2D" uid="uid://bdkkp4bug2uky" path="res://assets/sprites/crossbowman.png" id="5_g3j2y"]
 [ext_resource type="Texture2D" uid="uid://bs6cne2cmnuwn" path="res://assets/sprites/knight.png" id="6_ytgjq"]
 [ext_resource type="Texture2D" uid="uid://dbk5colv2rcj3" path="res://assets/sprites/skeleton.png" id="7_xhh54"]
 [ext_resource type="Texture2D" uid="uid://sbrqg28jmfka" path="res://assets/sprites/zombie.png" id="8_8oobj"]
 [ext_resource type="Texture2D" uid="uid://cnm75nvokqkvw" path="res://assets/sprites/wraith.png" id="9_fwi4l"]
+[ext_resource type="Script" uid="uid://b42ukw8tlqk4c" path="res://ui/scripts/button_sfx.gd" id="11_o1hu6"]
 
 [sub_resource type="Gradient" id="Gradient_g3j2y"]
 colors = PackedColorArray(0.078431375, 0.039215688, 0, 1, 0.47058824, 0.23529412, 0, 1)
@@ -194,6 +195,9 @@ icon = ExtResource("4_omcid")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerSetup/SelectableTextures/HBoxContainer/PikemanButton" unique_id=82920003]
+script = ExtResource("11_o1hu6")
+
 [node name="CrossbowmanButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=877109755]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -205,6 +209,9 @@ toggle_mode = true
 icon = ExtResource("5_g3j2y")
 icon_alignment = 1
 expand_icon = true
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerSetup/SelectableTextures/HBoxContainer/CrossbowmanButton" unique_id=1722584594]
+script = ExtResource("11_o1hu6")
 
 [node name="KnightButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=1675199276]
 custom_minimum_size = Vector2(50, 50)
@@ -219,6 +226,9 @@ icon = ExtResource("6_ytgjq")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerSetup/SelectableTextures/HBoxContainer/KnightButton" unique_id=726064011]
+script = ExtResource("11_o1hu6")
+
 [node name="SkeletonButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=1728713052]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -230,6 +240,9 @@ toggle_mode = true
 icon = ExtResource("7_xhh54")
 icon_alignment = 1
 expand_icon = true
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerSetup/SelectableTextures/HBoxContainer/SkeletonButton" unique_id=97390050]
+script = ExtResource("11_o1hu6")
 
 [node name="ZombieButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=1791091513]
 custom_minimum_size = Vector2(50, 50)
@@ -243,6 +256,9 @@ icon = ExtResource("8_8oobj")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerSetup/SelectableTextures/HBoxContainer/ZombieButton" unique_id=1030196652]
+script = ExtResource("11_o1hu6")
+
 [node name="WraithButton" type="Button" parent="PlayerSetup/SelectableTextures/HBoxContainer" unique_id=503300501]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -254,6 +270,9 @@ toggle_mode = true
 icon = ExtResource("9_fwi4l")
 icon_alignment = 1
 expand_icon = true
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="PlayerSetup/SelectableTextures/HBoxContainer/WraithButton" unique_id=437674238]
+script = ExtResource("11_o1hu6")
 
 [node name="HSlider" type="HSlider" parent="PlayerSetup" unique_id=1527222058]
 layout_mode = 1
@@ -458,6 +477,19 @@ offset_bottom = 0.0064086914
 text = "Texture:"
 vertical_alignment = 1
 
+[node name="PlayerNameInput" type="LineEdit" parent="AISetup" unique_id=996214873]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23500001
+anchor_top = 0.1
+anchor_right = 0.75
+anchor_bottom = 0.17
+offset_left = -0.07614136
+offset_right = 58.144043
+offset_bottom = -0.1893158
+text = "Hero"
+
 [node name="SelectableTextures" type="Control" parent="AISetup" unique_id=837275667]
 clip_contents = true
 layout_mode = 1
@@ -491,6 +523,9 @@ icon = ExtResource("4_omcid")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="AISetup/SelectableTextures/HBoxContainer/PikemanButton" unique_id=1608955364]
+script = ExtResource("11_o1hu6")
+
 [node name="CrossbowmanButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=1769045656]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -503,6 +538,9 @@ icon = ExtResource("5_g3j2y")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="AISetup/SelectableTextures/HBoxContainer/CrossbowmanButton" unique_id=1908219842]
+script = ExtResource("11_o1hu6")
+
 [node name="KnightButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=2102578385]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -514,6 +552,9 @@ toggle_mode = true
 icon = ExtResource("6_ytgjq")
 icon_alignment = 1
 expand_icon = true
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="AISetup/SelectableTextures/HBoxContainer/KnightButton" unique_id=1599140617]
+script = ExtResource("11_o1hu6")
 
 [node name="SkeletonButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=1727118978]
 custom_minimum_size = Vector2(50, 50)
@@ -528,6 +569,9 @@ icon = ExtResource("7_xhh54")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="AISetup/SelectableTextures/HBoxContainer/SkeletonButton" unique_id=635102614]
+script = ExtResource("11_o1hu6")
+
 [node name="ZombieButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=1738040857]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -540,6 +584,9 @@ icon = ExtResource("8_8oobj")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="AISetup/SelectableTextures/HBoxContainer/ZombieButton" unique_id=1175094461]
+script = ExtResource("11_o1hu6")
+
 [node name="WraithButton" type="Button" parent="AISetup/SelectableTextures/HBoxContainer" unique_id=816719335]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -551,6 +598,9 @@ toggle_mode = true
 icon = ExtResource("9_fwi4l")
 icon_alignment = 1
 expand_icon = true
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="AISetup/SelectableTextures/HBoxContainer/WraithButton" unique_id=1174078928]
+script = ExtResource("11_o1hu6")
 
 [node name="HSlider" type="HSlider" parent="AISetup" unique_id=1191811129]
 layout_mode = 1
@@ -746,6 +796,9 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="MenuButtons/VBoxContainer/BeginButton" unique_id=2050636313]
+script = ExtResource("11_o1hu6")
+
 [node name="SaveButton" type="Button" parent="MenuButtons/VBoxContainer" unique_id=681530398]
 custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
@@ -766,6 +819,9 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="MenuButtons/VBoxContainer/SaveButton" unique_id=2097805747]
+script = ExtResource("11_o1hu6")
 
 [node name="BackButton" type="Button" parent="MenuButtons/VBoxContainer" unique_id=1463121073]
 custom_minimum_size = Vector2(120, 40)
@@ -788,6 +844,9 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="MenuButtons/VBoxContainer/BackButton" unique_id=190051906]
+script = ExtResource("11_o1hu6")
+
 [node name="PlayerSpellsList" type="ItemList" parent="." unique_id=1549918160]
 visible = false
 layout_mode = 1
@@ -800,6 +859,7 @@ offset_left = 0.57598877
 offset_top = 0.3199768
 offset_right = -0.11999512
 offset_bottom = 0.59198
+select_mode = 2
 item_count = 2
 item_0/text = "Heal"
 item_1/text = "Lightning"

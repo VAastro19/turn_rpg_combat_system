@@ -17,7 +17,7 @@ func _ready() -> void:
 func _on_begin_button_pressed() -> void:
 	update_data()
 	get_parent().save_data()
-	get_tree().change_scene_to_file("res://scenes/combat_system.tscn")
+	get_tree().change_scene_to_file("res://main/combat_system.tscn")
 
 func _on_save_button_pressed() -> void:
 	update_data()

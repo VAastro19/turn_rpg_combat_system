@@ -13,7 +13,7 @@ config_version=5
 config/name="TurnRPGCombatSystem"
 run/main_scene="uid://byqh26rsl7fnv"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="uid://bhkcdsl3u5ick"
+config/icon="uid://bpbhp6ydslhio"
 
 [audio]
 
@@ -27,6 +27,7 @@ Coefficients="*uid://guxy71dymy28"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [gui]

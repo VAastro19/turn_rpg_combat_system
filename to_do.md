@@ -1,3 +1,4 @@
 improve ai
-create connections for modular system
-advanced combat actions
+add status effects
+cooldowns for some abilities
+loot and experience
