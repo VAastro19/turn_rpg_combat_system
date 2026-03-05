@@ -28,8 +28,8 @@ signal OnManaPotion(mana: int)
 @export_group("Basic Info")
 @export var character_name: String
 @export var display_texture: Texture2D
-@export var is_player: bool = false
-@export var facing_left: bool = false
+@export var is_player: bool
+@export var facing_left: bool
 
 @export_group("Attributes")
 @export var max_health: int = 100
@@ -45,6 +45,11 @@ signal OnManaPotion(mana: int)
 @export var spell_power: int = 1
 @export var magic_resistance: int = 2
 
+@export_group("Level and Loot")
+@export var loot: String
+@export var experience: int
+@export var level: int
+
 @export_group("Combat Actions")
 @export var combat_actions: Array[CombatAction]
 
@@ -59,7 +64,28 @@ signal OnManaPotion(mana: int)
 var stamina_bar_offset: float = 325
 var mana_bar_offset: float = 350
 
-func _ready() -> void:
+func unpack_data(data: Dictionary) -> void:
+	character_name = data["Name"]
+	display_texture = data["Texture"]
+	is_player = data["IsPlayer"]
+	facing_left = not is_player
+	max_health = data["MaxHealth"]
+	health = data["Health"]
+	max_stamina = data["MaxStamina"]
+	stamina = data["Stamina"]
+	max_mana = data["MaxMana"]
+	mana = data["Mana"]
+	attack = data["Attack"]
+	defense = data["Defense"]
+	spell_power = data["SpellPower"]
+	magic_resistance = data["MagicRes"]
+	combat_actions = data["CombatActions"]
+	loot = data["Loot"]
+	experience = data["Experience"]
+	level = data["Level"]
+	_set_up_character()
+
+func _set_up_character() -> void:
 	character_name_label.text = "[font_size=28][b]" + str(character_name) + "[/b]"
 	sprite.texture = display_texture
 	sprite.setup_texture()

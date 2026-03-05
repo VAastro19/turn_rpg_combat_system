@@ -21,7 +21,8 @@ func _ready() -> void:
 	spells_buttons_container.visible = false
 	abilities_buttons_container.visible = false
 	items_buttons_container.visible = false
-	
+
+func set_up_player_buttons() -> void:
 	_fill_buttons_array(main_buttons_container, main_buttons)
 	_fill_buttons_array(spells_buttons_container, spells_buttons)
 	_fill_buttons_array(abilities_buttons_container, abilities_buttons)

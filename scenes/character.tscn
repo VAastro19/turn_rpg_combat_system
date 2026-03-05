@@ -148,6 +148,7 @@ vertical_alignment = 1
 
 [node name="CharacterBackground" parent="." unique_id=406308773 instance=ExtResource("1_rkhd4")]
 z_index = -1
+anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 320.0

@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://byqh26rsl7fnv"]
+
+[ext_resource type="Script" uid="uid://chpl7hwnajqd7" path="res://scripts/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="1_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://cojwlwtvm2u7y" path="res://scenes/setup_screen.tscn" id="2_bqqt6"]
+
+[sub_resource type="Gradient" id="Gradient_74idx"]
+colors = PackedColorArray(0.078431375, 0.039215688, 0, 1, 0.47058824, 0.23529412, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wu84c"]
+gradient = SubResource("Gradient_74idx")
+width = 128
+height = 128
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ln24"]
+font_size = 40
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control" unique_id=1215211]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqqt6")
+
+[node name="Background" type="TextureRect" parent="." unique_id=2112224355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_wu84c")
+
+[node name="Frame" type="NinePatchRect" parent="." unique_id=679494708]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
+scale = Vector2(2, 2)
+texture = ExtResource("1_ekxnf")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="SetupLabel" type="Label" parent="." unique_id=1186885041]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.05
+anchor_right = 0.75000006
+anchor_bottom = 0.2
+offset_left = 0.4159851
+offset_top = 7.6959953
+offset_right = -0.41607666
+offset_bottom = -7.8079987
+grow_horizontal = 2
+grow_vertical = 2
+text = "Turn Based Combat System "
+label_settings = SubResource("LabelSettings_8ln24")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=899447129]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.448
+anchor_top = 0.25
+anchor_right = 0.55200005
+anchor_bottom = 0.46600002
+offset_left = -0.0960083
+offset_right = 0.095947266
+offset_bottom = 0.031982422
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BeginButton" type="Button" parent="VBoxContainer" unique_id=1102335353]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
+text = "Begin Battle"
+
+[node name="Frame" type="NinePatchRect" parent="VBoxContainer/BeginButton" unique_id=464936322]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ekxnf")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="SetupButton" type="Button" parent="VBoxContainer" unique_id=2054086567]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
+text = "Setup Game"
+
+[node name="Frame" type="NinePatchRect" parent="VBoxContainer/SetupButton" unique_id=612241792]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ekxnf")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=639804884]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0.7058824, 0.23529412, 1)
+text = "Quit"
+
+[node name="Frame" type="NinePatchRect" parent="VBoxContainer/QuitButton" unique_id=162027394]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ekxnf")
+draw_center = false
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="SetupScreen" parent="." unique_id=768695827 instance=ExtResource("2_bqqt6")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="VBoxContainer/BeginButton" to="." method="_on_begin_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SetupButton" to="." method="_on_setup_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

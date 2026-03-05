@@ -29,8 +29,13 @@ func _on_button_pressed(button: Button) -> void:
 		selected.button_pressed = false
 		selected = button
 
-func get_selected_texture() -> String:
+func get_name_from_selected_texture() -> String:
 	return texture_data[selected]
+
+func get_selected_texture() -> Texture2D:
+	var texture_name: String = texture_data[selected]
+	texture_name = texture_name.to_snake_case()
+	return load("res://assets/sprites/" + texture_name + ".png")
 
 func _on_h_slider_value_changed(value: float) -> void:
 	container.position.x = -value

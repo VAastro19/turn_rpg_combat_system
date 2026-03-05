@@ -1,20 +1,26 @@
 # game_setup.gd
 extends Control
 
-signal OnSendPlayerData(player_data: Dictionary)
-signal OnAISendData(ai_data: Dictionary)
-
 @onready var player_setup: Control = $PlayerSetup
 @onready var ai_setup: Control = $AISetup
 
+var ai_data: Dictionary
+var player_data: Dictionary
+
+func update_data() -> void:
+	ai_data = ai_setup.get_character_data()
+	player_data = player_setup.get_character_data()
+
+func _ready() -> void:
+	update_data()
+
 func _on_begin_button_pressed() -> void:
-	OnAISendData.emit(ai_setup.get_ai_data())
-	OnSendPlayerData.emit(player_setup.get_player_data())
+	update_data()
+	get_parent().save_data()
 	get_tree().change_scene_to_file("res://scenes/combat_system.tscn")
 
 func _on_save_button_pressed() -> void:
-	OnAISendData.emit(ai_setup.get_ai_data())
-	OnSendPlayerData.emit(player_setup.get_player_data())
+	update_data()
 
 func _on_back_button_pressed() -> void:
-	pass # Replace with function body.
+	visible = false

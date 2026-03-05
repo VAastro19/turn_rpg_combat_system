@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dcfpv5ep5j1eb" path="res://scripts/game_setup.gd" id="1_g3j2y"]
 [ext_resource type="Texture2D" uid="uid://cuhkwfqja0ybr" path="res://assets/sprites/brown_frame.png" id="1_v3wbd"]
-[ext_resource type="Script" uid="uid://bl5xxqbs4xcee" path="res://scripts/player_setup.gd" id="2_74idx"]
-[ext_resource type="Script" uid="uid://dfvjw7ddiu8nu" path="res://scripts/ai_setup.gd" id="3_j878g"]
+[ext_resource type="Script" uid="uid://bl5xxqbs4xcee" path="res://scripts/character_setup.gd" id="2_74idx"]
 [ext_resource type="Script" uid="uid://qbrth1d3v4vv" path="res://scripts/textures_selection.gd" id="3_kt6hf"]
 [ext_resource type="Texture2D" uid="uid://bfpd5h0t1hhph" path="res://assets/sprites/pikeman.png" id="4_omcid"]
 [ext_resource type="Texture2D" uid="uid://bdkkp4bug2uky" path="res://assets/sprites/crossbowman.png" id="5_g3j2y"]
@@ -12,11 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://sbrqg28jmfka" path="res://assets/sprites/zombie.png" id="8_8oobj"]
 [ext_resource type="Texture2D" uid="uid://cnm75nvokqkvw" path="res://assets/sprites/wraith.png" id="9_fwi4l"]
 
-[sub_resource type="Gradient" id="Gradient_74idx"]
+[sub_resource type="Gradient" id="Gradient_g3j2y"]
 colors = PackedColorArray(0.078431375, 0.039215688, 0, 1, 0.47058824, 0.23529412, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_j878g"]
-gradient = SubResource("Gradient_74idx")
+gradient = SubResource("Gradient_g3j2y")
 width = 128
 height = 128
 fill_from = Vector2(1, 1)
@@ -415,7 +414,8 @@ offset_right = 0.3359375
 offset_bottom = -0.24005127
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_j878g")
+script = ExtResource("2_74idx")
+is_player_stats = false
 
 [node name="Frame" type="NinePatchRect" parent="AISetup" unique_id=633759228]
 layout_mode = 1
@@ -800,10 +800,9 @@ offset_left = 0.57598877
 offset_top = 0.3199768
 offset_right = -0.11999512
 offset_bottom = 0.59198
-select_mode = 2
 item_count = 2
-item_0/text = "Lightning"
-item_1/text = "Heal"
+item_0/text = "Heal"
+item_1/text = "Lightning"
 
 [node name="PlayerAbilitiesList" type="ItemList" parent="." unique_id=1783026039]
 visible = false
@@ -853,8 +852,8 @@ offset_right = -0.11999512
 offset_bottom = 0.59198
 select_mode = 2
 item_count = 2
-item_0/text = "Lightning"
-item_1/text = "Heal"
+item_0/text = "Heal"
+item_1/text = "Lightning"
 
 [node name="AIAbilitiesList" type="ItemList" parent="." unique_id=1689656641]
 visible = false

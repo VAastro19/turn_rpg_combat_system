@@ -17,7 +17,16 @@ var controller: Character
 var can_cast: bool = false
 var game_over: bool = false
 
+func load_data() -> void:
+	var saved_data: SavedData = load("res://saved_data/game_data.tres") as SavedData
+	
+	player.unpack_data(saved_data.player_data)
+	ai.unpack_data(saved_data.ai_data)
+	
+	player_buttons.set_up_player_buttons()
+
 func _ready() -> void:
+	load_data()
 	next_turn()
 	end_screen.visible = false
 	player.OnTakeDamage.connect(_on_player_damaged)
